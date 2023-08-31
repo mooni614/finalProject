@@ -140,6 +140,14 @@
     outline: none;
 }
 
+.reserve_search_button {
+    width: 110px;
+    background-color: #00ce7c;
+    border-radius: 20px;
+    font-size: 20px;
+    box-shadow: 1px 1px 5px #00000026;
+}
+
 /*서치바 css 종료*/
 
 

@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="no-js">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/store/rentcar/rentcarReserve.css">
-    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+
+    <script src="/jq/jquery-3.7.0.min.js"></script>
+    <script src="/jq/jquery.form.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <script src="/js/header.js"></script>
+    <script src="https://kit.fontawesome.com/9647b4736a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
 
 </head>
 <body>
@@ -35,31 +45,39 @@
                                                               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAANlBMVEVHcEwoKCgnJycnJycnJycoKCgmJiYnJycgICAoKCgnJycoKCgnJycoKCgoKCgmJiYmJiYoKCiAjm0FAAAAEXRSTlMAYPBwz4A39xAgxaCwwOBQkdEtV/wAAAGdSURBVEjHxVVJtoQgDPwMkTDr/S/7w2SrgNqrZuF7kqkqCcnf368O4ntdLTzf6HAv9Av1GLbDCfFBffHb5fjlTp9lKI5lKJq5DI3N9W2Sw4EuQrqxM/2VhPLCU0u6XOd4bJdNtDNUmgRuJHBES4/vZfWvI0gJsWqhHHpaKEDNoFAqcVVKdKJzgJINNEU7fQ227HUhkMQFgknaBsAkG7PT6zqCGBQ8yXEpXApVUBGL2NcAspbalGmXhn50lV5r4Suv2HSaday0/cQAGu7GByYG1GZY0Cr43IIqzCgl/GIQaoSxAUUIc0juFSRbRWxIWvQ9LqrncVp937CpmDgr3KcNDkfuVSW3ygE4ag1Vqg89hew57N1MWczPufZ7GD0h5Pvttb2hT2q7bg+IrVKuTHeuuhAwmQ1hOATE8GHl9zaZf769iVPgMJkN1dc6mhnTSS76ESTmgJq75RrU3q2RcAag+YjWySP/jLMCiD+sorgdLTCE5WkDsQfUwxbJFmjty8WY5rtH3Pv9nYWU9wXoV9H9chsuR/YNc8b5V/o/Pf+nWBvnz7ADrAAAAABJRU5ErkJggg==">
                                     <div class="input_title_text">차량 받을 장소</div>
                                 </div>
-                                <input class="search_input_round search_input_detail" readonly=""
-                                       placeholder="대여 위치를 선택해 주세요." value="강릉역"></div>
+                                <input class="search_input_round search_input_detail" id="input_location"
+                                       readonly=""
+                                       placeholder="대여 위치를 선택해 주세요."></div>
                             <div class="input_grid_number"></div>
                             <div class="input_title_and_detail">
                                 <div class="input_title"><img alt="이미지" class="input_title_icon"
                                                               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwoKCgoKCgoKCgoKCgmJiYnJycnJycnJycnJycoKCgaae9ZAAAACnRSTlMAgD9AwCfmW9CrPNuh5QAAAKhJREFUOMtjYKAbYC/AZIFB1UIYS2o5isSsJTCW10oUCa8lmCwGViUlpa4VSlAAZgWAJaJWYYClYAkrTInFEIllLi5ZQAwBIFYWVGIhuuVSCAkpuCNnLUSRCEuFSYBYUAlWJQxAtnOXCKIBL4TlqADmqpXods9aTMAOKlo+KjEgEitQkxqrUhdEggM5UlPBCbABkkSzUNNg1KplAdAcjBTdBSBuAZ0KEQCFxaxY4wVeUAAAAABJRU5ErkJggg==">
                                     <div class="input_title_text">날짜 및 시간</div>
                                 </div>
-                                <input class="search_input_round search_input_detail" readonly=""
-                                       value="08.25(금) 10:00 - 08.26(토) 10:00"></div>
+                                <input class="search_input_round_date search_input_detail" id="depart_date"
+                                       readonly=""
+                                       placeholder="대여날짜 선택">
+                                <input class="search_input_round_date search_input_detail" id="arrive_date"
+                                       readonly=""
+                                       placeholder="반납날짜 선택"></div>
                             <div class="input_grid_number"></div>
                             <div class="input_title_and_detail">
                                 <div class="input_title"><img alt="이미지" class="input_title_icon"
                                                               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqBAMAAAA37dRoAAAAMFBMVEVHcEwoKCgoKCgoKCgkJCQnJycoKCgnJycnJycnJycoKCgnJyclJSUnJycnJycoKCjR5hZ0AAAAD3RSTlMAQH+/Fl7A0PCa4LAwcOtzDbdpAAABDElEQVQoz2NgIB3wKDCEMjAdQBP1+MjS4SC/BE30/m/O/xP2/0UTjf/J9F9h/lc0UdYrDHcZfAPQRJltGIwZDhugifJ/ZPjPIP+B2qLR6/+DwK+tyILO/2HABCHIUv+/LA0E0v9/R4gy/S+Bso7/V4CLcvxwgOnqb4CLnv8EZ+r/gTPlEaES/xEhSl/mX0EYuA8XZV3/HwF+BcBDARl8h/iT+X9nINwE0Rn/IZEn/92BATn8ICbv/4ISAed/g6n/G1BEuf+DtSAFKSSwQQYy/jdSQgbK/wXAougAn+hEQWQgCRVFtw0oGmz+f7ExHExg4LT6X2zKsB7FyI8M8qAQYtBAEd3C4AYkm0jJZwDj8c/qARk2UAAAAABJRU5ErkJggg==">
                                     <div class="input_title_text">운전자 생년월일</div>
                                 </div>
-                                <div class="input_birth_wrap"><input
-                                        class="search_input_round search_input_detail" placeholder="YYMMDD"
-                                        value="970824" style="height: 20px; margin-top: 0px;">
-                                    <div class="StyledText-uUnMb bISJPX"></div>
+                                <div class="input_birth_wrap">
+                                    <input type="text"
+                                           class="search_input_round search_input_detail"
+                                           id="input_birth"
+                                           placeholder="YYMMDD"
+                                           style="height: 20px; margin-top: 0px;">
                                 </div>
                             </div>
                         </div>
-                        <button type="button" id="/web/차량검색-검색버튼"
-                                class="rentcar_search_button choice_search_button">검색
+
+                        <button type="button" id="reserve_rentcar_search"
+                                class="rentcar_search_button reserve_search_button">검색
                         </button>
                     </div>
                 </div>
@@ -79,7 +97,8 @@
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAOVBMVEVHcEwlJSUkJCQkJCQmJiYmJiYmJiYmJiYmJiYhISEXFxcmJiYjIyMnJychISEnJycmJiYlJSUnJyeLuIzkAAAAEnRSTlMAZFZG57ys3cccB4448i31nXpFZLRHAAABxElEQVRIx+1W2baDIAwse1AW9f8/9grYVoUAcu5j503NSDJke71++CdM2rAdRk/X18y1mI5IUHzbwRVI8rWfYFOseiYVkfeFEvQ4f92fQONcAnbLASR+XMKvULIrUndYcC0yUYctBzkTSukqPzHwtU5e0rFcrOYrsqOQ+HapkWW08SLT0wgfPwmcnLiKlr6xFI/CyEuSFYlIy8/FFSxIiNdK/A4PQUpkF/0qcycXIVEyREHKXFAJFiFHp6uXsKExT+FgT8vBilum3snUok7vt3zJWE9KP+dorZn5hMw9xysHt0CCP+sgOejJzWC/ClrDNEbWCk2uNkzQa+62vsbHgl6kkztzPmdk2u/lRdsnZBps2aDbMSXMoGBzSAk9eFXyXpQPkqRg2p+eJji5DBbGml9Mf0mKu17NZnC6VF6QttqGbj02a3VRRNvMExJGFpRfK91Rup69njT9tk1t3Jz7t3JoPLVBJ2yxa59HrMBGbPQZL59juJPKsiLrFbO7nq8VDPzWlKS00ExmPRYi3yj5zyql0ipF5n2PfL9q5pDBljgvXE+TOuK7UqGzP+aLK5ed1PfKLNLKbBUsVI8t60brwfn3Q44/ak8s5uXGUYkAAAAASUVORK5CYII="
                                  width="24px" height="24px" alt="refresh"></button>
                     </div>
-                    <div class="ScrollArea-fliIxr reserv_scroll_filter"><p class="text_15px font-bold mb-[10px]">차량명 검색</p>
+                    <div class="ScrollArea-fliIxr reserv_scroll_filter"><p class="text_15px font-bold mb-[10px]">차량명
+                        검색</p>
                         <div style="display: flex;"><input placeholder="차량명을 입력해주세요."
                                                            class="_input_default_pczwv_3 CarNameSearchInput-dFPSqi filter_text_input"
                                                            value="">
@@ -90,33 +109,47 @@
                         <p class="FilterTypeLabel-PbfDL reserv_filter_division">구분</p>
                         <div class="Wrap-cslTPT filter_button_container">
                             <button type="button"
-                                    class="_button_default_1vx5o_3 Button-dhBNRM AllButton-bhyRbS filter_button_default edUbUe ">전체
+                                    class="_button_default_1vx5o_3 Button-dhBNRM AllButton-bhyRbS filter_button_default edUbUe ">
+                                전체
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">국산</button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">수입</button>
+                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">국산
+                            </button>
+                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">수입
+                            </button>
                         </div>
                         <p class="FilterTypeLabel-PbfDL reserv_filter_text">차종</p>
                         <div class="Wrap-cslTPT filter_button_container">
                             <button type="button"
-                                    class="_button_default_1vx5o_3 Button-dhBNRM AllButton-bhyRbS filter_button_default edUbUe ">전체
+                                    class="_button_default_1vx5o_3 Button-dhBNRM AllButton-bhyRbS filter_button_default edUbUe ">
+                                전체
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">경형</button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">승용</button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">SUV</button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">승합</button>
+                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">경형
+                            </button>
+                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">승용
+                            </button>
+                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">SUV
+                            </button>
+                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">승합
+                            </button>
                         </div>
                         <p class="FilterTypeLabel-PbfDL reserv_filter_text">유종</p>
                         <div class="Wrap-cslTPT filter_button_container">
                             <button type="button"
-                                    class="_button_default_1vx5o_3 Button-dhBNRM AllButton-bhyRbS filter_button_default edUbUe ">전체
+                                    class="_button_default_1vx5o_3 Button-dhBNRM AllButton-bhyRbS filter_button_default edUbUe ">
+                                전체
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">LPG</button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">가솔린</button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">디젤</button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">전기</button>
+                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">LPG
+                            </button>
+                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">가솔린
+                            </button>
+                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">디젤
+                            </button>
+                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">전기
+                            </button>
                             <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">하이브리드
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">수소</button>
+                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">수소
+                            </button>
                         </div>
                         <p class="FilterTypeLabel-PbfDL filter_scroll_title">연식 <span>2011~2023</span></p>
                         <div style="position: relative;">
@@ -156,7 +189,8 @@
                 </div>
             </div>
             <div>
-                <div class="ListInfoWrapper-igvcrK reserv_category_container"><span class="text-[14px] font_medium">총 7개</span>
+                <div class="ListInfoWrapper-igvcrK reserv_category_container"><span
+                        class="text-[14px] font_medium">총 7개</span>
                     <div class="Wrapper-dCnMqr result_category_box">
                         <button class="SortButton-cmRWQJ result_category_text_off">차종순</button>
                         <div class="Border-bHHyqR result_category_line"></div>
@@ -174,7 +208,8 @@
                                 <p class="SubTitle-gXOIXp result_item_type">모닝 3세대 F/L</p><img
                                     src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/6.png"
                                     style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>80,000원</p>
+                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>80,000원
+                                </p>
                             </div>
                             <div class="CardWrapper-cvjPki result_item">
                                 <div><span class="Label-fdRgKZ result_item_year">21~현재 출시</span></div>
@@ -182,7 +217,8 @@
                                 <p class="SubTitle-gXOIXp result_item_type">K3 2세대 F/L</p><img
                                     src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/22.png"
                                     style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>90,000원</p>
+                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>90,000원
+                                </p>
                             </div>
                             <div class="CardWrapper-cvjPki result_item">
                                 <div><span class="Label-fdRgKZ result_item_year">20~현재 출시</span></div>
@@ -190,7 +226,8 @@
                                 <p class="SubTitle-gXOIXp result_item_type">아반떼 7세대</p><img
                                     src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/43.png"
                                     style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>90,000원</p>
+                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>90,000원
+                                </p>
                             </div>
                             <div class="CardWrapper-cvjPki result_item">
                                 <div><span class="Label-fdRgKZ result_item_year">19~현재 출시</span></div>
@@ -198,7 +235,8 @@
                                 <p class="SubTitle-gXOIXp result_item_type">K5 3세대</p><img
                                     src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/50.png"
                                     style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>115,000원</p>
+                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>115,000원
+                                </p>
                             </div>
                             <div class="CardWrapper-cvjPki result_item">
                                 <div><span class="Label-fdRgKZ result_item_year">18~20년 출시</span></div>
@@ -206,7 +244,8 @@
                                 <p class="SubTitle-gXOIXp result_item_type">아반떼 6세대 F/L</p><img
                                     src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/42.png"
                                     style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>160,000원</p>
+                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>160,000원
+                                </p>
                             </div>
                             <div class="CardWrapper-cvjPki result_item">
                                 <div><span class="Label-fdRgKZ result_item_year">17~19년 출시</span></div>
@@ -214,7 +253,8 @@
                                 <p class="SubTitle-gXOIXp result_item_type">쏘나타 7세대 F/L</p><img
                                     src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/67.png"
                                     style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>180,000원</p>
+                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>180,000원
+                                </p>
                             </div>
                             <div class="CardWrapper-cvjPki result_item">
                                 <div><span class="Label-fdRgKZ result_item_year">16~19년 출시</span></div>
@@ -222,7 +262,8 @@
                                 <p class="SubTitle-gXOIXp result_item_type">그랜저 6세대</p><img
                                     src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/79.png"
                                     style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>260,000원</p>
+                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>260,000원
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -230,12 +271,10 @@
             </div>
         </div>
     </div>
+
 </div>
 
-
 </body>
-<script src="/jq/jquery-3.7.0.min.js"></script>
-<script src="/jq/jquery.form.min.js"></script>
-<script src="/js/join.js"></script>
+
 
 </html>

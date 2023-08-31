@@ -4,7 +4,9 @@ package com.kh.myproject.member.user.controller;
 import com.kh.myproject.api.kakaoapi.vo.MemberVO;
 import com.kh.myproject.api.sensapi.service.SmsService;
 import com.kh.myproject.member.user.model.dto.UserForm;
+import com.kh.myproject.member.user.model.entity.Qna;
 import com.kh.myproject.member.user.model.entity.User;
+import com.kh.myproject.member.user.service.QnaService;
 import com.kh.myproject.member.user.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @SessionAttributes("user")
@@ -30,6 +33,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    QnaService qnaService;
 
     @Autowired
     SmsService smsService;
@@ -45,11 +51,6 @@ public class UserController {
 
 
 
-
-    @GetMapping("store/home")
-    public String storeHome() {
-        return "store/home";
-    }
 
     @GetMapping("member/login")
     public String login() {
@@ -270,11 +271,10 @@ public class UserController {
         return "member/user/logout";
     }
 
-    @GetMapping("member/mypage")
+    @GetMapping("/member/mypage")
     public String mypage(HttpSession session, Model model) {
-
-
-        User user = (User)session.getAttribute("user");; // @ModelAttribute로 받게되면 처음에 session 설정이 돼있지 않기 때문에 에러발생.
+        System.out.println("UserController의 mypage함수 실행");
+        User user = (User)session.getAttribute("user"); // @ModelAttribute로 받게되면 처음에 session 설정이 돼있지 않기 때문에 에러발생.
         System.out.println(user);
         if(user == null){ // 세션값이 없다면
 
@@ -288,18 +288,20 @@ public class UserController {
         String user_month = formatted_date[1];
         String user_day = formatted_date[2];
 
+
         model.addAttribute("user_year", user_year);
         model.addAttribute("user_month", user_month);
         model.addAttribute("user_day", user_day);
 
 
         User newUser = userService.getUserById(user.getUserId());
+        List<Qna> qlist = qnaService.getQna(user.getUserId());
         // session 정보를 최신화 해준다.
         // 세션에서 현재 가지고 있는 user값을 업데이트해준다.
         model.addAttribute("user",newUser);
-
-
-        return "/member/user/mypage";
+        model.addAttribute("qlist",qlist);
+        System.out.println("asd"+qlist);
+        return "member/user/mypage";
     }
 
 
