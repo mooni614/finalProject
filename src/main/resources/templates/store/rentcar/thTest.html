@@ -20,11 +20,23 @@
 
 테스트
 
-<div th:text="${location}">
-    <div th:text="${departDate}">
-        <div th:text="${arriveDate}">
-            <div th:text="${birthDate}">
 
+<form action="/rentcar/search" method="post">
+    <div style="display: flex;"><input placeholder="차량명을 입력해주세요."
+                                       class="_input_default_pczwv_3 CarNameSearchInput-dFPSqi filter_text_input"
+                                       id="searchKeyword" name="searchKeyword">
+        <button type="submit" id="reserve_search_btn"
+                class="_button_default_1vx5o_3 CarNameSearchButton-cvlOy filter_search_button ">검색
+        </button>
+    </div>
+</form>
+
+
+
+<div th:each="list : ${rentcarList}">
+    <div th:text="${list.getCar_name()}"></div>
+        <div th:text="${list.getCar_discount()}"></div>
+            <div th:text="${list.getCar_nation()}"></div>
 </div>
 
 </body>

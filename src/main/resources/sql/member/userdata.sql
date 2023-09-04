@@ -18,3 +18,10 @@ VALUES
 
 select * from qna;
 
+
+INSERT INTO `car_info` (`car_name`, `car_nation`, `car_type`,`oil_type`,`driver_age`,`car_people`,`car_price`,`car_discount`,`com_id`,`car_option`, `car_img`)
+VALUES
+    ('레이','국내', '경차', '경유', '21세 이상', 4, 100000, 25000, 1, '옵션없음','sample.jpg'),
+    ('카니발','국내', '대형RV', '경유', '26세 이상', 7, 200000, 70000, 1, '블랙박스, 내비게이션','sample.jpg');
+
+

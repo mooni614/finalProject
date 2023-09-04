@@ -41,7 +41,7 @@
     <!--서치바-->
     <div class="search_bar_wrap" style="height: 100px;">
 
-
+<form action="/store/rentcar/MainSearch" method="post">
         <div class="search_bar_wrap_container">
             <div style="height: 0px; background: transparent;"></div>
             <div class="search_bar_wrap_container_line" style="height: 0px;">
@@ -61,7 +61,7 @@
                                                                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAANlBMVEVHcEwoKCgnJycnJycnJycoKCgmJiYnJycgICAoKCgnJycoKCgnJycoKCgoKCgmJiYmJiYoKCiAjm0FAAAAEXRSTlMAYPBwz4A39xAgxaCwwOBQkdEtV/wAAAGdSURBVEjHxVVJtoQgDPwMkTDr/S/7w2SrgNqrZuF7kqkqCcnf368O4ntdLTzf6HAv9Av1GLbDCfFBffHb5fjlTp9lKI5lKJq5DI3N9W2Sw4EuQrqxM/2VhPLCU0u6XOd4bJdNtDNUmgRuJHBES4/vZfWvI0gJsWqhHHpaKEDNoFAqcVVKdKJzgJINNEU7fQ227HUhkMQFgknaBsAkG7PT6zqCGBQ8yXEpXApVUBGL2NcAspbalGmXhn50lV5r4Suv2HSaday0/cQAGu7GByYG1GZY0Cr43IIqzCgl/GIQaoSxAUUIc0juFSRbRWxIWvQ9LqrncVp937CpmDgr3KcNDkfuVSW3ygE4ag1Vqg89hew57N1MWczPufZ7GD0h5Pvttb2hT2q7bg+IrVKuTHeuuhAwmQ1hOATE8GHl9zaZf769iVPgMJkN1dc6mhnTSS76ESTmgJq75RrU3q2RcAag+YjWySP/jLMCiD+sorgdLTCE5WkDsQfUwxbJFmjty8WY5rtH3Pv9nYWU9wXoV9H9chsuR/YNc8b5V/o/Pf+nWBvnz7ADrAAAAABJRU5ErkJggg==">
                                         <div class="input_title_text">차량 받을 장소</div>
                                     </div>
-                                    <input class="search_input_round search_input_detail" id="input_location"
+                                    <input class="search_input_round search_input_detail" id="input_location" name="input_location"
                                            readonly=""
                                            placeholder="대여 위치를 선택해 주세요."></div>
                                 <div class="input_grid_number"></div>
@@ -70,10 +70,10 @@
                                                                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwoKCgoKCgoKCgoKCgmJiYnJycnJycnJycnJycoKCgaae9ZAAAACnRSTlMAgD9AwCfmW9CrPNuh5QAAAKhJREFUOMtjYKAbYC/AZIFB1UIYS2o5isSsJTCW10oUCa8lmCwGViUlpa4VSlAAZgWAJaJWYYClYAkrTInFEIllLi5ZQAwBIFYWVGIhuuVSCAkpuCNnLUSRCEuFSYBYUAlWJQxAtnOXCKIBL4TlqADmqpXods9aTMAOKlo+KjEgEitQkxqrUhdEggM5UlPBCbABkkSzUNNg1KplAdAcjBTdBSBuAZ0KEQCFxaxY4wVeUAAAAABJRU5ErkJggg==">
                                         <div class="input_title_text">날짜 및 시간</div>
                                     </div>
-                                    <input class="search_input_round_date search_input_detail" id="depart_date"
+                                    <input class="search_input_round_date search_input_detail" id="depart_date" name="depart_date"
                                            readonly=""
                                            placeholder="대여날짜 선택">
-                                    <input class="search_input_round_date search_input_detail" id="arrive_date"
+                                    <input class="search_input_round_date search_input_detail" id="arrive_date" name="arrive_date"
                                            readonly=""
                                            placeholder="반납날짜 선택">
 
@@ -87,14 +87,14 @@
                                     <div class="input_birth_wrap">
 
                                         <input type="text"
-                                               class="search_input_round search_input_detail" id="input_birth"
+                                               class="search_input_round search_input_detail" id="input_birth" name="input_birth"
                                                placeholder="YYMMDD"
                                                style="height: 20px; margin-top: 0px;">
 
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" id="main_rentcar_search"
+                            <button type="submit" id="main_rentcar_search"
                                    class="rentcar_search_button main_search_button">검색
                             </button>
 
@@ -104,7 +104,7 @@
             </div>
         </div>
 
-
+        </form>
         <!--대여위치정하기 토글창-->
 
         <div class="search_result" id="result_location">

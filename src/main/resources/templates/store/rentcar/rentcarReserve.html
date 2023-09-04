@@ -47,17 +47,17 @@
                                 </div>
                                 <input class="search_input_round search_input_detail" id="input_location"
                                        readonly=""
-                                       placeholder="대여 위치를 선택해 주세요."></div>
+                                       placeholder="대여 위치를 선택해 주세요." th:value="${input_location}"></div>
                             <div class="input_grid_number"></div>
                             <div class="input_title_and_detail">
                                 <div class="input_title"><img alt="이미지" class="input_title_icon"
                                                               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwoKCgoKCgoKCgoKCgmJiYnJycnJycnJycnJycoKCgaae9ZAAAACnRSTlMAgD9AwCfmW9CrPNuh5QAAAKhJREFUOMtjYKAbYC/AZIFB1UIYS2o5isSsJTCW10oUCa8lmCwGViUlpa4VSlAAZgWAJaJWYYClYAkrTInFEIllLi5ZQAwBIFYWVGIhuuVSCAkpuCNnLUSRCEuFSYBYUAlWJQxAtnOXCKIBL4TlqADmqpXods9aTMAOKlo+KjEgEitQkxqrUhdEggM5UlPBCbABkkSzUNNg1KplAdAcjBTdBSBuAZ0KEQCFxaxY4wVeUAAAAABJRU5ErkJggg==">
                                     <div class="input_title_text">날짜 및 시간</div>
                                 </div>
-                                <input class="search_input_round_date search_input_detail" id="depart_date"
+                                <input class="search_input_round_date search_input_detail" id="depart_date" th:value="${depart_date}"
                                        readonly=""
                                        placeholder="대여날짜 선택">
-                                <input class="search_input_round_date search_input_detail" id="arrive_date"
+                                <input class="search_input_round_date search_input_detail" id="arrive_date" th:value="${arrive_date}"
                                        readonly=""
                                        placeholder="반납날짜 선택"></div>
                             <div class="input_grid_number"></div>
@@ -70,7 +70,7 @@
                                     <input type="text"
                                            class="search_input_round search_input_detail"
                                            id="input_birth"
-                                           placeholder="YYMMDD"
+                                           placeholder="YYMMDD" th:value="${input_birth}"
                                            style="height: 20px; margin-top: 0px;">
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
         <div class="Content-dVzyim reserv_contents_grid">
             <div class="Aside-ifoChX reserv_filter_wrap">
                 <div class="FilterWrapper-ipgWFO reserv_filter_container">
-                    <div class="Header-ichWIW reserv_filter_title_box"><span>필터</span>
+                    <div class="reserv_filter_title_box"><span>필터</span>
                         <button type="button" id="/tripsoda/carSubmodelList/검색리스트필터-리셋"
                                 style="color: unset; font: unset; font-palette: unset; font-synthesis: unset; forced-color-adjust: unset; text-orientation: unset; text-rendering: unset; -webkit-font-smoothing: unset; -webkit-locale: unset; -webkit-text-orientation: unset; -webkit-writing-mode: unset; writing-mode: unset; zoom: unset; accent-color: unset; place-content: unset; place-items: unset; place-self: unset; alignment-baseline: unset; animation-composition: unset; animation: unset; app-region: unset; appearance: unset; aspect-ratio: unset; backdrop-filter: unset; backface-visibility: unset; background: unset; background-blend-mode: unset; baseline-shift: unset; baseline-source: unset; block-size: unset; border-block: unset; border: unset; border-radius: unset; border-collapse: unset; border-end-end-radius: unset; border-end-start-radius: unset; border-inline: unset; border-start-end-radius: unset; border-start-start-radius: unset; inset: unset; box-shadow: unset; box-sizing: unset; break-after: unset; break-before: unset; break-inside: unset; buffered-rendering: unset; caption-side: unset; caret-color: unset; clear: unset; clip: unset; clip-path: unset; clip-rule: unset; color-interpolation: unset; color-interpolation-filters: unset; color-rendering: unset; color-scheme: unset; columns: unset; column-fill: unset; gap: unset; column-rule: unset; column-span: unset; contain: unset; contain-intrinsic-block-size: unset; contain-intrinsic-size: unset; contain-intrinsic-inline-size: unset; container: unset; content: unset; content-visibility: unset; counter-increment: unset; counter-reset: unset; counter-set: unset; cursor: pointer; cx: unset; cy: unset; d: unset; display: unset; dominant-baseline: unset; empty-cells: unset; fill: unset; fill-opacity: unset; fill-rule: unset; filter: unset; flex: unset; flex-flow: unset; float: unset; flood-color: unset; flood-opacity: unset; grid: unset; grid-area: unset; height: unset; hyphenate-character: unset; hyphenate-limit-chars: unset; hyphens: unset; image-orientation: unset; image-rendering: unset; initial-letter: unset; inline-size: unset; inset-block: unset; inset-inline: unset; isolation: unset; letter-spacing: unset; lighting-color: unset; line-break: unset; list-style: unset; margin-block: unset; margin: unset; margin-inline: unset; marker: unset; mask: unset; mask-type: unset; math-depth: unset; math-shift: unset; math-style: unset; max-block-size: unset; max-height: unset; max-inline-size: unset; max-width: unset; min-block-size: unset; min-height: unset; min-inline-size: unset; min-width: unset; mix-blend-mode: unset; object-fit: unset; object-position: unset; object-view-box: unset; offset: unset; opacity: unset; order: unset; orphans: unset; outline: unset; outline-offset: unset; overflow-anchor: unset; overflow-clip-margin: unset; overflow-wrap: unset; overflow: unset; overscroll-behavior-block: unset; overscroll-behavior-inline: unset; overscroll-behavior: unset; padding-block: unset; padding: unset; padding-inline: unset; page: unset; page-orientation: unset; paint-order: unset; perspective: unset; perspective-origin: unset; pointer-events: unset; position: unset; quotes: unset; r: unset; resize: unset; rotate: unset; ruby-position: unset; rx: unset; ry: unset; scale: unset; scroll-behavior: unset; scroll-margin-block: unset; scroll-margin: unset; scroll-margin-inline: unset; scroll-padding-block: unset; scroll-padding: unset; scroll-padding-inline: unset; scroll-snap-align: unset; scroll-snap-stop: unset; scroll-snap-type: unset; scroll-timeline: unset; scrollbar-gutter: unset; shape-image-threshold: unset; shape-margin: unset; shape-outside: unset; shape-rendering: unset; size: unset; speak: unset; stop-color: unset; stop-opacity: unset; stroke: unset; stroke-dasharray: unset; stroke-dashoffset: unset; stroke-linecap: unset; stroke-linejoin: unset; stroke-miterlimit: unset; stroke-opacity: unset; stroke-width: unset; tab-size: unset; table-layout: unset; text-align: unset; text-align-last: unset; text-anchor: unset; text-combine-upright: unset; text-decoration: unset; text-decoration-skip-ink: unset; text-emphasis: unset; text-emphasis-position: unset; text-indent: unset; text-overflow: unset; text-shadow: unset; text-size-adjust: unset; text-transform: unset; text-underline-offset: unset; text-underline-position: unset; white-space: unset; timeline-scope: unset; touch-action: unset; transform: unset; transform-box: unset; transform-origin: unset; transform-style: unset; transition: unset; translate: unset; user-select: unset; vector-effect: unset; vertical-align: unset; view-timeline: unset; view-timeline-inset: unset; view-transition-name: unset; visibility: unset; border-spacing: unset; -webkit-box-align: unset; -webkit-box-decoration-break: unset; -webkit-box-direction: unset; -webkit-box-flex: unset; -webkit-box-ordinal-group: unset; -webkit-box-orient: unset; -webkit-box-pack: unset; -webkit-box-reflect: unset; -webkit-highlight: unset; -webkit-line-break: unset; -webkit-line-clamp: unset; -webkit-mask-box-image: unset; -webkit-mask: unset; -webkit-mask-composite: unset; -webkit-print-color-adjust: unset; -webkit-rtl-ordering: unset; -webkit-ruby-position: unset; -webkit-tap-highlight-color: unset; -webkit-text-combine: unset; -webkit-text-decorations-in-effect: unset; -webkit-text-fill-color: unset; -webkit-text-security: unset; -webkit-text-stroke: unset; -webkit-user-drag: unset; -webkit-user-modify: unset; widows: unset; width: unset; will-change: unset; word-break: unset; word-spacing: unset; x: unset; y: unset; z-index: unset;">
                             <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAOVBMVEVHcEwlJSUkJCQkJCQmJiYmJiYmJiYmJiYmJiYhISEXFxcmJiYjIyMnJychISEnJycmJiYlJSUnJyeLuIzkAAAAEnRSTlMAZFZG57ys3cccB4448i31nXpFZLRHAAABxElEQVRIx+1W2baDIAwse1AW9f8/9grYVoUAcu5j503NSDJke71++CdM2rAdRk/X18y1mI5IUHzbwRVI8rWfYFOseiYVkfeFEvQ4f92fQONcAnbLASR+XMKvULIrUndYcC0yUYctBzkTSukqPzHwtU5e0rFcrOYrsqOQ+HapkWW08SLT0wgfPwmcnLiKlr6xFI/CyEuSFYlIy8/FFSxIiNdK/A4PQUpkF/0qcycXIVEyREHKXFAJFiFHp6uXsKExT+FgT8vBilum3snUok7vt3zJWE9KP+dorZn5hMw9xysHt0CCP+sgOejJzWC/ClrDNEbWCk2uNkzQa+62vsbHgl6kkztzPmdk2u/lRdsnZBps2aDbMSXMoGBzSAk9eFXyXpQPkqRg2p+eJji5DBbGml9Mf0mKu17NZnC6VF6QttqGbj02a3VRRNvMExJGFpRfK91Rup69njT9tk1t3Jz7t3JoPLVBJ2yxa59HrMBGbPQZL59juJPKsiLrFbO7nq8VDPzWlKS00ExmPRYi3yj5zyql0ipF5n2PfL9q5pDBljgvXE+TOuK7UqGzP+aLK5ed1PfKLNLKbBUsVI8t60brwfn3Q44/ak8s5uXGUYkAAAAASUVORK5CYII="
@@ -99,13 +99,19 @@
                     </div>
                     <div class="ScrollArea-fliIxr reserv_scroll_filter"><p class="text_15px font-bold mb-[10px]">차량명
                         검색</p>
+
+
+                        <form action="rentcarreserve/searchs" method="post">
                         <div style="display: flex;"><input placeholder="차량명을 입력해주세요."
                                                            class="_input_default_pczwv_3 CarNameSearchInput-dFPSqi filter_text_input"
-                                                           value="">
-                            <button type="button" id="/tripsoda/carSubmodelList/검색리스트필터-검색"
+                                                          id="searchKeyword" name="searchKeyword">
+                            <button type="submit" id="reserve_search_btn"
                                     class="_button_default_1vx5o_3 CarNameSearchButton-cvlOy filter_search_button ">검색
                             </button>
                         </div>
+                        </form>
+
+
                         <p class="FilterTypeLabel-PbfDL reserv_filter_division">구분</p>
                         <div class="Wrap-cslTPT filter_button_container">
                             <button type="button"
@@ -199,18 +205,25 @@
                         <button class="SortButton-cmRWQJ result_category_text_off">높은 가격순</button>
                     </div>
                 </div>
+
+
                 <div class="infinite-scroll-component__outerdiv">
                     <div class="infinite-scroll-component " style="height: auto; overflow: hidden;">
                         <div class="SubmodelListItemWrapper-fMKfe reserv_result_gird">
-                            <div class="CardWrapper-cvjPki result_item">
+
+                            <!--차량 안내 카드1-->
+                            <div class="CardWrapper-cvjPki result_item" th:each="list : ${rentcarList}">
                                 <div><span class="Label-fdRgKZ result_item_year">20~현재 출시</span></div>
-                                <p class="SubmodelName-fBxKDh result_item_name">모닝 어반</p>
+                                <p class="SubmodelName-fBxKDh result_item_name" th:text="${list.getCar_name}"></p>
                                 <p class="SubTitle-gXOIXp result_item_type">모닝 3세대 F/L</p><img
                                     src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/6.png"
                                     style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>80,000원
+                                <p class="PriceText-iWKXRR result_item_price" th:text="${list.getCar_discount()}"><span class="lowest_label">최저</span>
                                 </p>
                             </div>
+
+
+
                             <div class="CardWrapper-cvjPki result_item">
                                 <div><span class="Label-fdRgKZ result_item_year">21~현재 출시</span></div>
                                 <p class="SubmodelName-fBxKDh result_item_name">더 뉴 K3 2세대</p>

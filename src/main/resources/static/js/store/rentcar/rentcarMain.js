@@ -278,7 +278,7 @@ $(function () {
     }
 
 
-
+/*
 //컨트롤러에 연결되는 Ajax
 
     $("#main_rentcar_search").click(function() {
@@ -305,7 +305,7 @@ $(function () {
             }
         });
     });
-
+*/
 
 });
 
