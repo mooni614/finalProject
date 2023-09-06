@@ -4,6 +4,8 @@ package com.kh.myproject.member.user.model.dto;
 import com.kh.myproject.member.user.model.entity.User;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Setter
@@ -24,6 +26,7 @@ public class UserForm {
     private Date user_date;       // 생년월일
     private String user_mbti;       // mbti
     private String user_img;       // mbti
+    private LocalDateTime user_regdate;  //가입날짜.
 
 
     // DTO 클래스에 데이터를 Entity(테이블과 매핑되는 클래스)로
@@ -34,7 +37,7 @@ public class UserForm {
 
     public User toEntity(){
 
-        return new User(null,user_id, user_name,  user_password, user_phone, user_gender, user_date, user_mbti,user_img);
+        return new User(null,user_id, user_name,  user_password, user_phone, user_gender, user_date, user_mbti,user_img,user_regdate);
 
     }
 

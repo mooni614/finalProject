@@ -12,7 +12,7 @@
     <script src="/jq/jquery.form.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
+    <script src="/js/store/rentcar/rentcarReserve.js"></script>
     <script src="/js/header.js"></script>
     <script src="https://kit.fontawesome.com/9647b4736a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
@@ -47,17 +47,19 @@
                                 </div>
                                 <input class="search_input_round search_input_detail" id="input_location"
                                        readonly=""
-                                       placeholder="대여 위치를 선택해 주세요." th:value="${input_location}"></div>
+                                       placeholder="대여 위치를 선택해 주세요." th:value="${session.input_location}"></div>
                             <div class="input_grid_number"></div>
                             <div class="input_title_and_detail">
                                 <div class="input_title"><img alt="이미지" class="input_title_icon"
                                                               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwoKCgoKCgoKCgoKCgmJiYnJycnJycnJycnJycoKCgaae9ZAAAACnRSTlMAgD9AwCfmW9CrPNuh5QAAAKhJREFUOMtjYKAbYC/AZIFB1UIYS2o5isSsJTCW10oUCa8lmCwGViUlpa4VSlAAZgWAJaJWYYClYAkrTInFEIllLi5ZQAwBIFYWVGIhuuVSCAkpuCNnLUSRCEuFSYBYUAlWJQxAtnOXCKIBL4TlqADmqpXods9aTMAOKlo+KjEgEitQkxqrUhdEggM5UlPBCbABkkSzUNNg1KplAdAcjBTdBSBuAZ0KEQCFxaxY4wVeUAAAAABJRU5ErkJggg==">
                                     <div class="input_title_text">날짜 및 시간</div>
                                 </div>
-                                <input class="search_input_round_date search_input_detail" id="depart_date" th:value="${depart_date}"
+                                <input class="search_input_round_date search_input_detail" id="depart_date"
+                                       th:value="${session.depart_date}"
                                        readonly=""
                                        placeholder="대여날짜 선택">
-                                <input class="search_input_round_date search_input_detail" id="arrive_date" th:value="${arrive_date}"
+                                <input class="search_input_round_date search_input_detail" id="arrive_date"
+                                       th:value="${session.arrive_date}"
                                        readonly=""
                                        placeholder="반납날짜 선택"></div>
                             <div class="input_grid_number"></div>
@@ -70,7 +72,7 @@
                                     <input type="text"
                                            class="search_input_round search_input_detail"
                                            id="input_birth"
-                                           placeholder="YYMMDD" th:value="${input_birth}"
+                                           placeholder="YYMMDD" th:value="${session.input_birth}"
                                            style="height: 20px; margin-top: 0px;">
                                 </div>
                             </div>
@@ -85,6 +87,14 @@
         </div>
     </div>
 
+<!--
+    <div>
+        <input type="hidden" id="th_input_location" th:value="${input_location}"/>
+        <input type="hidden" id="th_depart_date" th:value="${depart_date}"/>
+        <input type="hidden" id="th_arrive_date" th:value="${arrive_date}"/>
+        <input type="hidden" id="th_input_birth" th:value="${input_birth}"/>
+    </div>
+-->
 
     <!--검색 필터링-->
     <div width="auto" class="ContentsArea-ceSrvw reserv_contents_area">
@@ -101,15 +111,16 @@
                         검색</p>
 
 
-                        <form action="rentcarreserve/searchs" method="post">
-                        <div style="display: flex;"><input placeholder="차량명을 입력해주세요."
-                                                           class="_input_default_pczwv_3 CarNameSearchInput-dFPSqi filter_text_input"
-                                                          id="searchKeyword" name="searchKeyword">
-                            <button type="submit" id="reserve_search_btn"
-                                    class="_button_default_1vx5o_3 CarNameSearchButton-cvlOy filter_search_button ">검색
-                            </button>
-                        </div>
-                        </form>
+
+                            <div style="display: flex;"><input placeholder="차량명을 입력해주세요."
+                                                               class="_input_default_pczwv_3 CarNameSearchInput-dFPSqi filter_text_input"
+                                                               id="searchKeyword" name="searchKeyword">
+                                <button id="reserve_search_btn"
+                                        class="_button_default_1vx5o_3 CarNameSearchButton-cvlOy filter_search_button ">
+                                    검색
+                                </button>
+                            </div>
+
 
 
                         <p class="FilterTypeLabel-PbfDL reserv_filter_division">구분</p>
@@ -197,87 +208,38 @@
             <div>
                 <div class="ListInfoWrapper-igvcrK reserv_category_container"><span
                         class="text-[14px] font_medium">총 7개</span>
-                    <div class="Wrapper-dCnMqr result_category_box">
-                        <button class="SortButton-cmRWQJ result_category_text_off">차종순</button>
-                        <div class="Border-bHHyqR result_category_line"></div>
-                        <button class="SortButton-cmRWQJ result_category_text_on">낮은 가격순</button>
-                        <div class="Border-bHHyqR result_category_line"></div>
-                        <button class="SortButton-cmRWQJ result_category_text_off">높은 가격순</button>
+                    <div class="result_category_box">
+                        <button class="result_category_text_off" id="car_type_list_btn">차종순</button>
+                        <div class="result_category_line"></div>
+                        <button class="result_category_text_on" id="low_price_list_btn">낮은 가격순</button>
+                        <div class="result_category_line"></div>
+                        <button class="result_category_text_off" id="high_price_list_btn">높은 가격순</button>
                     </div>
                 </div>
 
 
                 <div class="infinite-scroll-component__outerdiv">
                     <div class="infinite-scroll-component " style="height: auto; overflow: hidden;">
-                        <div class="SubmodelListItemWrapper-fMKfe reserv_result_gird">
+                        <div class="reserv_result_gird">
 
-                            <!--차량 안내 카드1-->
-                            <div class="CardWrapper-cvjPki result_item" th:each="list : ${rentcarList}">
-                                <div><span class="Label-fdRgKZ result_item_year">20~현재 출시</span></div>
-                                <p class="SubmodelName-fBxKDh result_item_name" th:text="${list.getCar_name}"></p>
-                                <p class="SubTitle-gXOIXp result_item_type">모닝 3세대 F/L</p><img
+                            <!--SubmodelListItemWrapper-fMKfe-->
+
+                            <!--차량 안내 카드1
+
+                            <div class="result_item" id="result_item" th:each="list : ${rentcarList}" >
+                                <div><span class="Label-fdRgKZ result_item_year" th:text="${list.getCar_year()}"></span>
+                                </div>
+                                <p class="SubmodelName-fBxKDh result_item_name" th:text="${list.getCar_name()}"></p>
+                                <p class="SubTitle-gXOIXp result_item_type" th:text="${list.getCar_type()}"></p><img
                                     src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/6.png"
                                     style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price" th:text="${list.getCar_discount()}"><span class="lowest_label">최저</span>
-                                </p>
+                                <div class="price_box"> <p class="lowest_label">최저</p>
+                                    <p class="PriceText-iWKXRR result_item_price" th:text="${list.getCar_discount()}">
+                                         </p><p class="result_item_price">원</p></div>
                             </div>
 
+                            -->
 
-
-                            <div class="CardWrapper-cvjPki result_item">
-                                <div><span class="Label-fdRgKZ result_item_year">21~현재 출시</span></div>
-                                <p class="SubmodelName-fBxKDh result_item_name">더 뉴 K3 2세대</p>
-                                <p class="SubTitle-gXOIXp result_item_type">K3 2세대 F/L</p><img
-                                    src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/22.png"
-                                    style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>90,000원
-                                </p>
-                            </div>
-                            <div class="CardWrapper-cvjPki result_item">
-                                <div><span class="Label-fdRgKZ result_item_year">20~현재 출시</span></div>
-                                <p class="SubmodelName-fBxKDh result_item_name">아반떼 (CN7)</p>
-                                <p class="SubTitle-gXOIXp result_item_type">아반떼 7세대</p><img
-                                    src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/43.png"
-                                    style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>90,000원
-                                </p>
-                            </div>
-                            <div class="CardWrapper-cvjPki result_item">
-                                <div><span class="Label-fdRgKZ result_item_year">19~현재 출시</span></div>
-                                <p class="SubmodelName-fBxKDh result_item_name">K5 3세대</p>
-                                <p class="SubTitle-gXOIXp result_item_type">K5 3세대</p><img
-                                    src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/50.png"
-                                    style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>115,000원
-                                </p>
-                            </div>
-                            <div class="CardWrapper-cvjPki result_item">
-                                <div><span class="Label-fdRgKZ result_item_year">18~20년 출시</span></div>
-                                <p class="SubmodelName-fBxKDh result_item_name">더 뉴 아반떼 AD</p>
-                                <p class="SubTitle-gXOIXp result_item_type">아반떼 6세대 F/L</p><img
-                                    src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/42.png"
-                                    style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>160,000원
-                                </p>
-                            </div>
-                            <div class="CardWrapper-cvjPki result_item">
-                                <div><span class="Label-fdRgKZ result_item_year">17~19년 출시</span></div>
-                                <p class="SubmodelName-fBxKDh result_item_name">쏘나타 뉴 라이즈</p>
-                                <p class="SubTitle-gXOIXp result_item_type">쏘나타 7세대 F/L</p><img
-                                    src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/67.png"
-                                    style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>180,000원
-                                </p>
-                            </div>
-                            <div class="CardWrapper-cvjPki result_item">
-                                <div><span class="Label-fdRgKZ result_item_year">16~19년 출시</span></div>
-                                <p class="SubmodelName-fBxKDh result_item_name">그랜저 IG</p>
-                                <p class="SubTitle-gXOIXp result_item_type">그랜저 6세대</p><img
-                                    src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/79.png"
-                                    style="width: 100%; max-width: 163px;">
-                                <p class="PriceText-iWKXRR result_item_price"><span class="lowest_label">최저</span>260,000원
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>

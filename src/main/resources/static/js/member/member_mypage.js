@@ -82,14 +82,14 @@ option5_btn.addEventListener("click",(e)=>{
 
 $('.write_btn').click(()=>{
     $('.ask_content').addClass("disappear");
-    $('#question_table').addClass("disappear");
+    $('.my_question_list').addClass("disappear");
     $('.question').removeClass("disappear");
     $('.write_btn').addClass("disappear");
 })
 
 $('#question_btn_cancel').click(()=>{
     $('.ask_content').removeClass("disappear");
-    $('#question_table').removeClass("disappear");
+    $('.my_question_list').removeClass("disappear");
     $('.question').addClass("disappear");
     $('.write_btn').removeClass("disappear");
 })

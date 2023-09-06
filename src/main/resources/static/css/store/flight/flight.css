@@ -1,51 +1,38 @@
-h1{
-    font-size: 35px;
+h1, h5, h6{
     font-weight: bold;
+}
+
+h1 {
+    font-size: 35px;
     margin-top: 35px;
 }
 
-.container{
+
+.container {
     margin-top: 20px;
 }
 
-.flight_search_form_container, .result_container{
+.flight_search_form_container, .result_container {
     margin: 0 auto;
     width: 1100px;
     position: relative;
 }
 
-.result_container hr{
+.result_container{
+    margin-top: 55px;
+}
+.result_container hr {
     margin-top: 25px;
 }
+#total_count{
+    color: #00b8ff;
+}
 
-.flight_rank_container{
-    margin: 0 auto;
-    width: 1100px;
-    margin-top: 50px;
+.flight_search_container{
+    margin-top: 150px;
 }
-.flight_rank_title{
-    vertical-align: middle;
-}
-.flight_rank_bgimg{
-    background-image: url("https://www.ddaily.co.kr/photos/2023/04/16/2023041610062883846_l.jpg");
-    height: 300px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-top-left-radius: 14px;
-    border-top-right-radius: 14px;
-}
-.flight_rank_text{
-    height: 100px;
-    display: flex;
-    align-items: center;
-}
-.flight_rank_text span{
-    margin: 0 10px;
-}
-.flight_rank_text i:before{
-    content: url("https://openimage.interpark.com/tour-desktop/pages/air/main/icon-oneway.png");
-}
-.flight_search_container:after{
+
+.flight_search_container:after {
     content: "";
     position: absolute;
     background-image: url(https://openimage.interpark.com/tour-desktop/pages/air/main/mainVisualPalmtree.jpg);
@@ -56,7 +43,8 @@ h1{
     z-index: -1;
     background-repeat: no-repeat;
 }
-.flight_search_form{
+
+.flight_search_form {
     height: 120px;
     background-color: #ffffff;
     border-radius: 20px;
@@ -64,14 +52,15 @@ h1{
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
     margin-top: 50px;
 }
-.result_title{
+
+.result_title {
     line-height: 29px;
     color: #000;
     font-size: 22px;
     font-weight: bold;
-    margin-top: 50px;
 }
-.result_title i{
+
+.result_title i {
     background: url(//openimage.interpark.com/tour-desktop/pages/air/search/icon_arrow.png) no-repeat;
     width: 20px;
     height: 15px;
@@ -80,8 +69,10 @@ h1{
     display: inline-block;
     margin: 0 10px 2px 10px;
 }
-
-.flight_search_form_title{
+#result_flight_date{
+    float: right;
+}
+.flight_search_form_title {
     border-bottom: 1px solid #e6e6e6;
     height: 60px;
     display: flex;
@@ -90,13 +81,13 @@ h1{
     margin-left: 20px;
 }
 
-.flight_search_form_title p{
+.flight_search_form_title p {
     margin: 0;
     padding: 10px;
     font-size: large;
 }
 
-.flight_search_form_content{
+.flight_search_form_content {
     /*display: flex;*/
     /*align-items: center;*/
     /*margin-left: 20px;*/
@@ -106,10 +97,12 @@ h1{
     box-sizing: border-box;
     display: block;
 }
-.flight_search_table, .search_airline{
+
+.flight_search_table, .search_airline {
     display: table;
 }
-.search_airline:after{
+
+.search_airline:after {
     content: "";
     position: absolute;
     width: 1px;
@@ -119,7 +112,8 @@ h1{
     background-color: rgba(182, 189, 199, 0.4);
     right: -15px;
 }
-.flight_date_input:before{
+
+.flight_date_input:before {
     content: "";
     position: absolute;
     width: 1px;
@@ -129,20 +123,24 @@ h1{
     background-color: rgba(182, 189, 199, 0.4);
     left: -15px;
 }
-.flight_search_col, .search_btn_box{
+
+.flight_search_col, .search_btn_box {
     display: table-cell;
     position: relative;
     vertical-align: middle;
 }
-.flight_search_form_content img{
+
+.flight_search_form_content img {
     margin-top: 15px;
     width: 42px;
     height: 42px;
 }
-.search_airline{
+
+.search_airline {
     position: relative;
 }
-.search_airline_input{
+
+.search_airline_input {
     float: left;
     position: relative;
     padding: 30px 0;
@@ -150,13 +148,15 @@ h1{
     height: 120px;
     width: 550px;
 }
-.airline_btn{
+
+.airline_btn {
     position: relative;
     text-align: center;
     overflow: hidden;
     display: inline-block;
 }
-.airline_btn h4, .flight_date_input h4{
+
+.airline_btn h4, .flight_date_input h4 {
 
     text-align: left;
     font-size: 16px;
@@ -165,11 +165,12 @@ h1{
     padding-left: 3px;
 }
 
-.form-select{
+.form-select {
     font-weight: bold;
     font-size: 22px;
     width: 200px;
 }
+
 /*.airline_input{
     width: 200px;
     line-height: inherit;
@@ -184,7 +185,7 @@ h1{
     height: 30px;
 }*/
 
-.airline_icon{
+.airline_icon {
     width: 38px;
     height: 56px;
     background: transparent url("https://openimage.interpark.com/tour-desktop/pages/air/main/icon-airplane.png") no-repeat center;
@@ -192,7 +193,7 @@ h1{
     margin: 0 25px;
 }
 
-.icon_circle{
+.icon_circle {
     content: "";
     position: absolute;
     top: 0;
@@ -203,7 +204,7 @@ h1{
     background-size: 38px auto;
 }
 
-.flight_date_input{
+.flight_date_input {
     width: 282px;
     box-sizing: border-box;
     float: left;
@@ -211,10 +212,12 @@ h1{
     padding: 30px 0 30px 15px;
     height: 120px;
 }
-.flight_date_box{
+
+.flight_date_box {
     padding: 10px 0;
 }
-#flight_date{
+
+#flight_date {
     line-height: 30px;
     letter-spacing: inherit;
     box-sizing: border-box;
@@ -229,11 +232,11 @@ h1{
     width: 100%;
 }
 
-.search_btn_box{
+.search_btn_box {
     padding-left: 50px;
 }
 
-#flight_search_btn{
+#flight_search_btn {
     cursor: pointer;
     height: 70px;
     border: none;
@@ -241,41 +244,66 @@ h1{
     font-size: 18px;
     font-weight: bold;
     color: white;
-    background: rgb(0, 182, 206);
+    background: #00b8ff;
     padding: 21px 24px;
 }
 
 
-.flight_search_btn{
+.flight_search_btn {
     border-style: none;
 }
-.result_table{
+
+.result_table {
     border: 1px solid #f0f0f0;
-    margin-top: 35px;
+    margin-top: 20px;
     cursor: pointer;
     border-radius: 15px;
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
 }
 
-.result_table_inner{
+.none_result_table{
+        text-align: center;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        height: 300px;
+}
+
+.none_result_table:before{
+    content: '';
+    background-image: url("https://m-flight.naver.com/list-e9b61b3ce61c7b874b702933db2b7935.png");
+    background-size: 200px auto;
+    background-position: 0 0;
+    display: block;
+    margin: 0 auto 27px;
+    width: 66px;
+    height: 66px;
+}
+.none_result_table p{
+    color: #8f8f8f;
+}
+.result_table_inner {
     border-bottom: none;
     display: flex;
     align-items: center;
-    padding: 24px 18px;
+    padding: 18px 18px;
     position: relative;
 }
-.result_schedule{
+
+.result_schedule {
     flex-basis: 670px;
     position: relative;
     margin-top: 0px;
     margin-bottom: 0px;
     margin-right: 150px;
 }
-.schedule_item{
+
+.schedule_item {
     margin-top: 0px;
     display: flex;
 }
-.airline_box{
+
+.airline_box {
     display: flex;
     align-items: flex-start;
     min-width: 290px;
@@ -285,26 +313,26 @@ h1{
     margin-bottom: 0px;
     font-size: 17px;
 }
-.airline_item{
-    padding-left: 24px;
+
+.airline_item {
+    text-align: center;
     color: #191919;
+    width: 150px;
 }
-.airline_logos{
-    text-indent: -24px;
-    display: inline-block;
-}
-.airline_logos img{
+
+.airline_logos img {
     display: inline-block;
     height: 35px;
     object-fit: contain;
-    margin-right: 4px;
     vertical-align: middle;
 }
-.airline_name{
+
+.airline_name {
     vertical-align: middle;
     font-size: 20px;
 }
-.airline_route{
+
+.airline_route {
     display: flex;
     align-items: center;
     flex-basis: 400px;
@@ -312,10 +340,12 @@ h1{
     margin-bottom: 0;
     font-size: 18px;
 }
-.end_route{
+
+.end_route {
     margin-left: 30px;
 }
-.end_route:before{
+
+.end_route:before {
     background-image: url("https://m-flight.naver.com/list-e9b61b3ce61c7b874b702933db2b7935.png");
     -webkit-background-size: 200px auto;
     background-size: 200px auto;
@@ -328,21 +358,24 @@ h1{
     scale: 1.3;
     margin-right: 20px;
 }
-.airline_price{
+
+.airline_price {
     flex-basis: 255px;
 
 }
-.airline_price div{
+
+.airline_price div {
     float: right;
 }
 
-.airline_price b{
+.airline_price b {
     margin-right: 50px;
     font-size: 22px;
 }
 
 .hr-sect {
-    display: flex;
+    /*display: flex;*/
+    display: none;
     flex-basis: 100%;
     align-items: center;
     color: rgba(0, 0, 0, 0.35);
@@ -350,6 +383,7 @@ h1{
     margin: 30px 0px;
     cursor: pointer;
 }
+
 .hr-sect::before,
 .hr-sect::after {
     content: "";
@@ -360,33 +394,34 @@ h1{
     line-height: 0px;
     margin: 0px 16px;
 }
+
 /**/
-.flight_result_table{
+.flight_result_table {
     display: table;
-        margin-top: 30px;
+    margin-top: 30px;
     width: 100%;
     position: relative;
 
 }
 
-.flight_result_title_row{
+.flight_result_title_row {
     display: table-row;
     background-color: #666;
     border: 1px solid #494949;
     color: #ffffff;
 }
 
-.flight_result_title_row div{
+.flight_result_title_row div {
     border-left: 1px solid #494949;
 }
 
 
-.flight_result_row{
+.flight_result_row {
     display: table-row;
     cursor: pointer;
 }
 
-.flight_result_col{
+.flight_result_col {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
@@ -394,14 +429,17 @@ h1{
     border-bottom: 1px solid #dadada;
 
 }
-.flight_result_col div{
+
+.flight_result_col div {
     display: inline-block;
     position: relative;
 }
-#airline_name span{
+
+#airline_name span {
     font-size: 12px;
 }
-#airline_name:before{
+
+#airline_name:before {
     content: "";
     background-image: url(https://flight.11st.co.kr/flight_img/AIR_IMG/TW.png);
     background-size: 48px 48px;
@@ -412,15 +450,16 @@ h1{
     right: 100%;
 }
 
-.flight_result_col:first-child{
+.flight_result_col:first-child {
     border-left: 1px solid #dadada;
     width: 250px;
 }
 
-.flight_result_col:last-child{
+.flight_result_col:last-child {
     border-right: 1px solid #dadada;
 }
-.flight_result_col img{
+
+.flight_result_col img {
     width: 36px;
 }
 
@@ -440,6 +479,64 @@ h1{
     background: rgb(255, 255, 255);
     border-radius: 14px;
     box-shadow: rgba(25, 25, 25, 0.2) 0px 6px 10px;
+}
+
+.loading_wrap{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
+.loading-box {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 100;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, .2);
+}
+
+.loading-box .circles {
+    padding-top: 10px;
+}
+
+.loading-box .circles i {
+    animation: scaleBounce .3s alternate infinite;
+    display: inline-block;
+    margin: 0 4px;
+    width: 10px;
+    height: 10px;
+    background: #00a5e5;
+    border-radius: 50em;
+}
+
+.loading-box .circles i:nth-child(2) {
+    animation-delay: .1s;
+}
+
+.loading-box .circles i:nth-child(3) {
+    animation-delay: .2s;
+}
+
+.loading-box p {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+@keyframes scaleBounce {
+    from {
+        transform: scale(.7)
+    }
+    to {
+        transform: scale(1.3)
+    }
 }
 
 /*input[type='date']::before {*/

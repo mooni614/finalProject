@@ -7,19 +7,25 @@
     margin-top: 50px;
     text-align: center;
     border : 1px solid gainsboro;
+    box-shadow: rgba(25, 25, 25, 0.2) 0px 6px 10px;
+    border-radius: 10px;
+
+
+
+
 
 }
 
 #loginbtn{
 
-    background-color: #46A0EF;
+    background-color: #00b8ff ;
     color : white;
 
 }
 
 #login_block{
 
-    margin-top: 100px;
+    margin-top: 120px;
 }
 
 #loginbtn:hover{
@@ -31,7 +37,7 @@
     border : 0px;
     width: 330px;
     height: 55px;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-bottom: 10px;
     font-size : 16px;
 
@@ -50,16 +56,18 @@
 
 
     color : white;
+
     /*background-color: #588fee;*/
-    background-color: #05B6CE;
+    background-color: #00b8ff ;
 
 }
 
-#title{
+#title, #join_logo{
 
     margin-top: 30px;
     width: 150px;
     height: 100px;
+    margin-bottom: 30px;
 }
 
 .login_block{
@@ -67,7 +75,9 @@
     width: 400px;
     height: 50px;
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+
+
 
 
 }
@@ -77,10 +87,10 @@
     padding-left: 10px;
     width: 316px;
     height: 40px;
-    border-radius: 5px;
+    border-radius: 10px;
     border : 1px solid grey;
-    color : grey;
     outline : none;
+    color : black;
 
 }
 
@@ -92,6 +102,7 @@
     width: 330px;
     display :flex;
     justify-content: space-between;
+    font-size : 14px;
 }
 
 .find_block span{
@@ -111,10 +122,10 @@
     text-align: center;
     background-color: white;
     border : 1px solid #2B96EC;
-    border-radius: 5px;
+    border-radius: 10px;
     color : #2B96EC;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
 }
 
 #join_btn:active{
@@ -132,7 +143,7 @@
 
 #join_block{
 
-    margin-top: 100px;
+    margin-top: 120px;
     width: 500px;
 
 }
@@ -268,11 +279,6 @@
 
 }
 
-#join_logo{
-
-    width: 150px;
-    height: 120px;
-}
 
 .phone_block{
 
@@ -289,7 +295,7 @@
     background-color: #05B6CE;
     border : none;
     border-radius: 5px;
-    width: 90px;
+    width: 100px;
     height: 40px;
     color:white;
 
@@ -327,7 +333,7 @@
 .right_phone_block{
 
     color :white;
-    font-size: 14px;
+    font-size: 13px;
 
 }
 

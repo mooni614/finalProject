@@ -166,5 +166,31 @@ $(document).ready(function () {
     });
 
 
+    //헤더의 동행을 찾아보세요 서치바 검색 기능.
+
+
+
+    $('#search_bar').on('keydown',function(e){
+
+        console.log(e);
+        console.log(e.key)
+        if(e.key === "Enter"){ // 엔터 입력시
+
+            if(this.value === ""){
+                // Swal.fire('검색어를 입력해주세요.','', 'info')
+                alert('검색어를 입력해주세요.');
+            }else{
+
+                var query = this.value;
+                window.location.href = "/community/accompany?searchName="+query;
+
+
+            }
+        }
+
+
+
+
+    });
 })
 

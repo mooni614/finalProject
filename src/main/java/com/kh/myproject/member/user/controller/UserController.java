@@ -3,6 +3,7 @@ package com.kh.myproject.member.user.controller;
 
 import com.kh.myproject.api.kakaoapi.vo.MemberVO;
 import com.kh.myproject.api.sensapi.service.SmsService;
+import com.kh.myproject.member.user.model.entity.Manager;
 import com.kh.myproject.member.user.model.dto.UserForm;
 import com.kh.myproject.member.user.model.entity.Qna;
 import com.kh.myproject.member.user.model.entity.User;
@@ -18,11 +19,13 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -45,11 +48,8 @@ public class UserController {
     public String home() {
 
 
-
         return "community/home";
     }
-
-
 
 
     @GetMapping("member/login")
@@ -91,14 +91,14 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("member/checkId")
-    public String checkId(@ModelAttribute("user_id") String user_id){
+    public String checkId(@ModelAttribute("user_id") String user_id) {
 
         System.out.println("넘어온값 :" + user_id);
         User user = userService.getUserById(user_id);
-        if(user == null){
+        if (user == null) {
 
             return "success";
-        }else{
+        } else {
 
             return "fail";
         }
@@ -109,13 +109,30 @@ public class UserController {
     @PostMapping("member/loginPro")
     public ModelAndView loginPro(@RequestParam("user_id") String user_id,
                                  @RequestParam("user_password") String user_password,
-                                 ModelAndView modelAndView) {
+                                 ModelAndView modelAndView,
+                                 RedirectAttributes ra
+                                 ) {
 
         System.out.println(user_id);
         System.out.println(user_password);
 
-        User result = userService.getUser(user_id, user_password);
+        Object check_manager = userService.getUser(user_id, user_password);
+        User result = null;
         String msg = "";
+
+        if(check_manager instanceof Manager){
+
+            modelAndView.setViewName("redirect:/manager/user"); // 로그인확인시 매니저라면 바로 매니저페이지로 이동.
+            ra.addFlashAttribute("check_manager",check_manager);
+            // 로그인을 통해 매니저 컨트롤러론 넘어갔다는 사실을 확인해야한다.
+
+            return modelAndView;
+        }
+        else if(check_manager instanceof User){
+            result = (User) check_manager;
+        }
+
+
         if (result != null) {
             msg = String.format("반갑습니다 %s님", result.getUserName());
             modelAndView.addObject("user", result); // 세션을 설정한다.
@@ -134,7 +151,7 @@ public class UserController {
     @GetMapping("member/findPw")
     public String findPw() {
 
-        return "member/findPw";
+        return "member/user/findPw";
     }
 
 
@@ -159,24 +176,20 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("member/joinAuth")
-    public String joinAuth(@ModelAttribute("user_phone")String user_phone){
+    public String joinAuth(@ModelAttribute("user_phone") String user_phone) {
 
-//
-//        System.out.println("join_auth 메서드 실행");
-//        Map<String,Object> result = smsService.authUser(user_phone);
+
+//        Map<String, Object> result = smsService.authUser(user_phone);
 //        SendSmsResponseDto ssrd = (SendSmsResponseDto) result.get("ssrd");
-//        String ran_num = (String) result.get("ran_num");
-//        System.out.println("ran_num" + ran_num);
-//        System.out.println("srrd  : " + ssrd);
-//        String response = "";
-//        System.out.println(ran_num);
-//        if(ssrd.getStatusCode().equals("202")){
+//        String ran_num = "";
 //
-//            response = ran_num;
+//        if (ssrd.getStatusCode().equals("202")) {
 //
-//        }else{
+//            ran_num = (String)result.get(ran_num);
 //
-//            response = "fail";
+//        } else {
+//
+//            ran_num = "fail";
 //
 //        }
 
@@ -194,7 +207,6 @@ public class UserController {
             }
 
         }
-
 
 
         return ran_num;
@@ -226,14 +238,14 @@ public class UserController {
         String user_img = userForm.getUser_img(); // img 경로
 
         // 카카오로 가입한게 아니라면 img는 null일 것이다.
-        if ( (user_img == null || user_img.equals("")  )  && userForm.getUser_gender().equals("M")) {
+        if ((user_img == null || user_img.equals("")) && userForm.getUser_gender().equals("M")) {
 
             userForm.setUser_img("default1.png"); // 남성일 경우 default1.png, 여성일 경우 default2.png설정
 
-        } else if ( (user_img == null || user_img.equals("")  ) && userForm.getUser_gender().equals("F")) {
+        } else if ((user_img == null || user_img.equals("")) && userForm.getUser_gender().equals("F")) {
 
             userForm.setUser_img("default2.png"); // 남성일 경우 default1.png, 여성일 경우 default2.png설정
-        } else if(user_img !=null || !user_img.equals("")){
+        } else if (user_img != null || !user_img.equals("")) {
 
             // 기본 프로필 이미지가 있을 경우에는 해당 url에 접속해 이미지 파일을 서버에 저장한다.
 
@@ -246,6 +258,8 @@ public class UserController {
 
         }
 
+        LocalDateTime ldt = LocalDateTime.now();
+        userForm.setUser_regdate(ldt);
 
         User user = userForm.toEntity();
 
@@ -271,12 +285,14 @@ public class UserController {
         return "member/user/logout";
     }
 
-    @GetMapping("/member/mypage")
+    @GetMapping("member/mypage")
     public String mypage(HttpSession session, Model model) {
-        System.out.println("UserController의 mypage함수 실행");
-        User user = (User)session.getAttribute("user"); // @ModelAttribute로 받게되면 처음에 session 설정이 돼있지 않기 때문에 에러발생.
+
+
+        User user = (User) session.getAttribute("user");
+        ; // @ModelAttribute로 받게되면 처음에 session 설정이 돼있지 않기 때문에 에러발생.
         System.out.println(user);
-        if(user == null){ // 세션값이 없다면
+        if (user == null) { // 세션값이 없다면
 
             return "redirect:/";
         }
@@ -288,20 +304,21 @@ public class UserController {
         String user_month = formatted_date[1];
         String user_day = formatted_date[2];
 
-
         model.addAttribute("user_year", user_year);
         model.addAttribute("user_month", user_month);
         model.addAttribute("user_day", user_day);
+
 
 
         User newUser = userService.getUserById(user.getUserId());
         List<Qna> qlist = qnaService.getQna(user.getUserId());
         // session 정보를 최신화 해준다.
         // 세션에서 현재 가지고 있는 user값을 업데이트해준다.
-        model.addAttribute("user",newUser);
-        model.addAttribute("qlist",qlist);
-        System.out.println("asd"+qlist);
-        return "member/user/mypage";
+        model.addAttribute("user", newUser);
+
+        model.addAttribute("qlist", qlist);
+
+        return "/member/user/mypage";
     }
 
 
@@ -310,7 +327,6 @@ public class UserController {
             @RequestParam("user_year") int user_year,
             @RequestParam("user_month") int user_month,
             @RequestParam("user_day") int user_day,
-
             @ModelAttribute("user") User session_user,
             UserForm userForm,
             Model model
@@ -412,6 +428,87 @@ public class UserController {
 
         return "member/user/uploadTestPro";
     }
+
+    @PostMapping("member/requestId")
+    @ResponseBody
+    public String requestId(
+            @ModelAttribute("user_name") String user_name,
+            @ModelAttribute("user_phone1") String user_phone1
+    ) {
+
+        System.out.println(user_name);
+        System.out.println(user_phone1);
+
+        User user = userService.findUserId(user_name, user_phone1);
+
+        if (user != null) {
+
+            return user.getUserId();
+        }
+
+        return "error";
+
+    }
+
+
+    @PostMapping("member/requestPw")
+    @ResponseBody
+    public String requestPw(@ModelAttribute("user_id") String user_id,
+                            @ModelAttribute("user_phone2") String user_phone2) {
+
+
+        String ran_num = smsService.makeRanNum();
+
+        User user = userService.findUserPw(user_id, user_phone2);
+
+//        if(user != null) { // 가입시 입력한 아이디와 입력한 폰번호가 같다면 인증번호를 전송해준다.
+//
+//
+//            Map<String, Object> result = smsService.authUser(user_phone2);
+//            SendSmsResponseDto ssrd = (SendSmsResponseDto) result.get("ssrd");
+//            String ran_num = (String) result.get("ran_num");
+//            System.out.println("ran_num" + ran_num);
+//            System.out.println("srrd  : " + ssrd);
+//            String response = "";
+//            System.out.println(ran_num);
+//            if (ssrd.getStatusCode().equals("202")) {
+//
+//            }
+        if(user == null){
+            return "error";
+
+        }
+        return ran_num + "/" + user.getUserNumber(); // 실제로는 문자를 전송한다.
+
+
+
+}
+
+
+    @PostMapping("/member/updatePw")
+    @ResponseBody
+    public String updatePw(@ModelAttribute("user_number") String user_number,
+                           @ModelAttribute("new_pw1") String new_pw1,
+                           RedirectAttributes ra) {
+
+
+        System.out.println(new_pw1);
+        System.out.println(user_number);
+
+        int result = userService.updatePw(user_number, new_pw1);
+        System.out.println("updatePw실행결과 반환값 :" + result);
+        ra.addFlashAttribute("result", result);
+
+
+        return result + "";
+    }
+
+    @GetMapping("/sideheader")
+    public String sideheader(){
+
+        return "home";
+    }
+
 
 
 }

@@ -2,37 +2,40 @@
 $(document).ready(function () {
 
 
-
-
     //월선택에 따른 일자 출력 변경
 
-    $('#user_day').click(function(){
-        console.log('gg')
+    $('#user_month').on('change',function () {
 
-        console.log($('#user_month option:selected').val());
 
         var month = $('#user_month option:selected').val();
 
 
-        var month_list = [[1,3,5,7,8,10,12],[2],[4,6,11]];
+        var month_list = [[1, 3, 5, 7, 8, 10, 12], [2], [4, 6, 11]];
 
-        out: for(var i = 0 ; i < month_list.length ; i++){
+        out: for (var i = 0; i < month_list.length; i++) {
 
-            for(var j = 0 ; j <month_list[i].length ; j++){
+            for (var j = 0; j < month_list[i].length; j++) {
 
-                if(month_list[i][j] == month){
+                console.log(month_list[i][j])
+                if (month_list[i][j] == month) {
                     // 31일, 29일, 30일을 선택한다.
-                    if(i == 0){
+                    if (i == 0) {
                         // 31일로 바꾸게끔 처리.
-                        console.log('31');
+
+                        $('#day30').removeClass('disappear');
+                        $('#day31').removeClass('disappear');
+
                         break out;
-                    }else if(i == 1){
+                    } else if (i == 1) {
                         // 29일로 바꾸게끔 처리
-                        console.log('29');
+                        $('#day30').addClass('disappear');
+                        $('#day31').addClass('disappear');
                         break out;
-                    }else if(i == 2){
+                    } else if (i == 2) {
                         // 30일로 바꾸게끔 처리.
                         console.log('30');
+                        $('#day30').removeClass('disappear');
+                        $('#day31').addClass('disappear');
                         break out;
 
                     }
@@ -40,8 +43,6 @@ $(document).ready(function () {
             }
         }
 
-        console.log(document.getElementById("day_sequence"));
-        console.log($('#day_sequence2'));
 
 
         // 로직처리.
@@ -62,13 +63,11 @@ $(document).ready(function () {
     })
 
 
-
     //회원가입시 휴대폰 인증요청에 대한 로직 처리
 
     var auth_num = ""; // 전역변수로 설정 후 사용자에게 간 문자값을 통신으로 받고나서 변수값에 저장한다.
     var auth_check = false; // 휴대폰 인증여부 체크.
     var id_check = false; // 아이디 중복 여부 체크.
-
 
 
     //인증번호 요청, 재요청 클릭시
@@ -92,7 +91,7 @@ $(document).ready(function () {
 
         }
 
-        if(!auth_check) { // 인증완료가 아직 안됐을 경우.
+        if (!auth_check) { // 인증완료가 아직 안됐을 경우.
 
             $.ajax({
                 url: '/member/joinAuth',
@@ -112,12 +111,11 @@ $(document).ready(function () {
                 }
 
             });
-        }else {
+        } else {
 
             alert("이미 인증이 완료됐습니다.");
         }
     })
-
 
 
     // 휴대폰 인증번호를 입력하고 인증하기 클릭시
@@ -129,9 +127,9 @@ $(document).ready(function () {
             alert('인증이 완료됐습니다.');
             auth_check = true;
             $('#auth_num').val("인증완료");
-            $('#auth_num').prop('disabled',true);
-            $('#auth_num').css('color','green');
-            $('#user_phone').prop('disabled',true);
+            $('#auth_num').prop('disabled', true);
+            $('#auth_num').css('color', 'green');
+            $('#user_phone').prop('disabled', true);
 
 
         } else {
@@ -285,55 +283,63 @@ $(document).ready(function () {
 
     // id중복확인 로직
 
-
-
-    $('#user_id').on('input',(e)=>{
-
+    function idcheck(e) {// 아이디 유효성 검사하는 ㅎ함수.
         $('#id_check').removeClass("disappear");
 
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // 이메일 형식검사 정규 표현식
 
-        var user_value = e.target.value;
+        var user_value = $("#user_id").val();
+        console.log('check')
+        console.log($("#user_id").val())
 
         if (emailPattern.test(user_value)) { // 이메일형식이 맞으면 db와 아이디 중복 검사를 한다.
 
             $.ajax({
-                url:"/member/checkId",
-                method:"POST",
-                data:{user_id:user_value},
-                success:function(data){
+                url: "/member/checkId",
+                method: "POST",
+                data: {user_id: user_value},
+                success: function (data) {
                     id_check = data === "success" ? true : false; // true:중복아이디 없음, false:중복아이디있음.
 
 
-                    if(id_check){
+                    if (id_check) {
 
                         $('#id_check').text("사용가능한 이메일입니다.");
-                        $('#id_check').css("color","green");
+                        $('#id_check').css("color", "green");
 
-                    }else{
+                    } else {
 
                         $('#id_check').text("중복되는 아이디입니다.");
-                        $('#id_check').css("color","red");
-
+                        $('#id_check').css("color", "red");
 
 
                     }
                 },
-                error:function(){
+                error: function () {
 
                 }
             })
 
         } else if (!emailPattern.test(user_value)) { // 이메일 형식에 맞게 작성되지 않았다면 이메일 형식에 맞게 하라고 한다.
 
-            $('#id_check').text("이메일 형식에 맞게 아이디를 작성해주세요.") ;
-            $('#id_check').css("color","red");
-
+            $('#id_check').text("이메일 형식에 맞게 아이디를 작성해주세요.");
+            $('#id_check').css("color", "red");
 
 
         }
+    }
 
+
+    $('#user_id').on('input', (e) => {
+
+        idcheck();
     })
+
+
+    if ($('#user_id').val() !== "") { //처음 렌더링 시 우ㅠ효성 검사를 해야함. 카카오로그인시 value값이 설정되기 때문.
+
+        idcheck();
+    }
 
 
     // 회원가입 버튼 클릭시
@@ -407,7 +413,7 @@ $(document).ready(function () {
             alert("이메일 형식에 맞게 아이디를 작성해주세요.(ex : kh1234@naver.com");
             check = false;
 
-        } else if(!id_check){
+        } else if (!id_check) {
             alert("중복되는 아이디입니다. 다른 아이디를 사용해주세요.");
             check = false;
         } else if (query.user_password === "") {
@@ -451,7 +457,7 @@ $(document).ready(function () {
             check = false;
 
 
-        }else if(!auth_check){
+        } else if (!auth_check) {
 
             alert("휴대폰 인증을 완료해주세요.");
         }
@@ -483,10 +489,7 @@ $(document).ready(function () {
     });
 
 
-
 })
-
-
 
 
 let test = document.getElementById("#abc");

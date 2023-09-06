@@ -199,26 +199,36 @@
                 <!-- </div>-->
 
                 <!--문의사항이 있다면-->
-                <table id="question_table">
-                    <thead>
-                    <tr>
-                        <th width="15%" class="sc-165575bb-3 gpqVaL">답변 상태</th>
-                        <th width="30%" class="sc-165575bb-3 gpqVac">문의 제목</th>
-                        <th width="40%" class="sc-165575bb-3 gpqVaf">문의 내용</th>
-                        <th width="20%" class="sc-165575bb-3 gpqVa-d">문의일</th>
-                    </tr>
-                    </thead>
-                </table>
+                <div class="my_question_list">
+                    <div class="mql_title">
+                        <div class="mt_1">답변 상태</div>
+                        <div class="mt_2">문의 제목</div>
+                        <div class="mt_3">문의 내용</div>
+                        <div class="mt_4">문의 일</div>
+                    </div>
 
-                <div class="qna_div" th:each="qna : ${qlist}">
-                        <div><button color="#F1F9F6" class="qna_btn">답변대기</button></div>
-                    <div th:text="${qna.qna_title}"></div>
-                    <div th:text="${qna.qna_content}"></div>
-                    <div th:text="${qna.qna_date}"></div>
+                    <!-- 리스트 받아서 출력 -->
+                <th:block th:each="qlist : ${qlist}">
+                    <div class="mql_list">
+                        <div class="ml_1">
+                            <button th:if="${qlist.qnaAnswer == null}" color="#F1F9F6" class="qna_status">답변대기</button>
+                            <button th:if="${qlist.qnaAnswer != null}" color="#F1F9F6" class="qna_status2">답변완료</button>
+                        </div>
+                        <div class="ml_2" th:text="${qlist.qnaTitle}"></div>
+                        <div class="ml_3" th:text="${qlist.qnaContent}"></div>
+
+<!--                        <div class = "ml_4" th:text="${#temporals.format(qlist.qnaDate, 'yyyy년MM월dd일HH시mm분')}"></div>-->
+                        <div class="ml_4" th:text="${#strings.substring(qlist.qnaDate,0,10)+ ' '+#strings.substring(qlist.qnaDate,11,19)}"></div>
+                    </div>
+                    <div class="mql_answer hide" th:if="${qlist.qnaAnswer != null}">
+                        <div class="answer_content">
+                            <i class="fa-solid fa-arrow-turn-up fa-rotate-90" style="color: #8ad2ff;"></i>
+                            <div th:text="${qlist.qnaAnswer}"></div>
+                        </div>
+                    </div>
+                </th:block>
+                    <!-- 방금 입력한 질문-->
                 </div>
-
-
-
                 <div class="question disappear">
                     <p>제목</p>
                     <input name="question_title" type="text" placeholder="제목을 입력해주세요">
@@ -942,7 +952,7 @@
                                                          onclick="location.href='/member/mypage'"></div>
 
                             </div>
-                            <p>1998csj</p>
+                            <p th:text = "${user.userId}"></p>
                         </div>
                         <div class="separate_line"></div>
                     </div>
@@ -997,10 +1007,11 @@
 
 </div>
 
-</body>
 <script src="/jq/jquery-3.7.0.min.js"></script>
 <script src="/js/member/member_mypage.js"></script>
 <script src="/js/header.js"></script>
 <script src="/js/member/mypage_update.js"></script>
+</body>
+
 
 </html>

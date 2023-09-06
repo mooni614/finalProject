@@ -4,6 +4,7 @@ package com.kh.myproject.member.user.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -49,6 +50,9 @@ public class User {
 
     @Column
     private String userImg; // 유저 프로필 이미지.
+
+    @Column
+    private LocalDateTime userRegdate; // 유저 가입날짜
 
 
 }

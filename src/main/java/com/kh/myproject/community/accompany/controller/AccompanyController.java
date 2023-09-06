@@ -2,6 +2,7 @@ package com.kh.myproject.community.accompany.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
@@ -20,8 +21,10 @@ public class AccompanyController {
 
     //동행 리스트(동행 메인)
     @GetMapping("/community/accompany") // http://localhost:8070/community/accompany
-    public String communityaccompany() {
+    public String communityaccompany(@RequestParam(name = "searchName" , defaultValue = "null") String searchName) {
 
+        System.out.println(searchName);
+        // searchName을 이용해 db select 문 실행
 
         return "community/accompany/accompany";
     }

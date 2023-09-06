@@ -126,7 +126,7 @@
 
 
                     <div th:each="number : ${#numbers.sequence(1, 31)}" id = "day_sequence">
-                        <option th:value="${number}" th:text="${number} + '일'" name = "day_list" ></option>
+                        <option th:value="${number}" th:text="${number} + '일'" name = "day_list" th:id = "'day'+${number}" ></option>
                     </div>
 
                 </select>

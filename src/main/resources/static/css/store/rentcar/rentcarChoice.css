@@ -211,7 +211,6 @@
     color: rgb(170, 170, 170);
     display: inline-block;
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -364,7 +363,7 @@
     align-items: center;
 }
 
-.company_text_detail {
+.company_text_detail_line {
     background-color: rgb(215, 215, 215);
     width: 1px;
     height: 12px;

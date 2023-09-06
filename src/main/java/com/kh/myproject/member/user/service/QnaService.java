@@ -17,11 +17,17 @@ public class QnaService {
 
     public List<Qna> getQna(String qna_writer){
         System.out.println("QnaService의 getQna 실행");
-        System.out.println(qnaRepository.findAllByWriter(qna_writer));
         return qnaRepository.findAllByWriter(qna_writer);
     }
 
     public void submitQna(Qna qna){
         qnaRepository.save(qna);
     }
+
+    public List<Qna> getAllQna(){
+
+        return qnaRepository.findAll();
+    }
+
+
 }

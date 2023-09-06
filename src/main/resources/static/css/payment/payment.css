@@ -58,6 +58,14 @@
 }
 
 :root {
+    --adm-color-primary: #00ce7c;
+    --main_color: #00ce7c;
+    --main_color_1: #e5faf1;
+    --main_color_0: #f2fcf8;
+    --disable_color: #99ebca;
+}
+
+:root {
     --mbsc-safe-top: 0;
     --mbsc-safe-right: 0;
     --mbsc-safe-bottom: 0;
@@ -155,7 +163,7 @@
     background-color: rgb(246, 246, 246);
     min-height: calc(100vh - 246px);
     height: auto;
-    padding: 0px 0px 60px;
+    padding: 70px 0px 60px;
 }
 
 .container {
@@ -209,7 +217,7 @@
     margin-right: 15px;
 }
 
-.fsTopInfoLeft  {
+.fsTopInfoLeft {
     width: 185px;
     margin: auto;
     display: flex;
@@ -304,7 +312,7 @@
     margin-top: 20px;
     position: sticky;
     font-size: 18px;
-    top: 80px;
+    top: 117px;
     height: 70px;
     z-index: 1;
 }
@@ -792,7 +800,7 @@ button, input, optgroup, select, textarea {
 
 .paymentInfoWrap {
     position: sticky;
-    top: 100px;
+    top: 137px;
     width: 380px;
     height: 354px;
     padding: 40px;
@@ -945,7 +953,7 @@ button {
 
 .company-map {
     max-width: 708px;
-    height: 180px;
+    height: 344px;
     background: rgba(249, 249, 249, 0.976);
     margin: 20px 0px;
 }
@@ -1269,7 +1277,6 @@ tbody {
     font-feature-settings: "tnum";
     pointer-events: none;
     position: relative;
-    top: 100px;
     width: auto;
     max-width: calc(100vw - 16px);
     margin: 8px auto;
@@ -1284,7 +1291,7 @@ tbody {
 
 .contentBox .ant-modal-content {
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px -1px 4px 0px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 4px 0px;
 }
 
 .ant-modal-content {
@@ -1446,4 +1453,52 @@ tbody {
     transform-origin: 216.5px 845px;
     border-radius: 10px;
     width: 500px !important;
+}
+
+.modal-open {
+    overflow: hidden;
+    padding-right: 15px; /* 스크롤바의 너비 만큼 패딩 추가 */
+    position: fixed;
+    width: 100%;
+}
+
+#input_phone {
+    width: 59%;
+}
+
+.auth {
+    display: none;
+}
+
+#input_auth {
+    width: 59%;
+}
+
+#kakaoMap {
+    position: relative;
+    width: 100%;
+    height: 344px;
+}
+
+.kakaoMap-direct {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+    word-break: keep-all;
+    -webkit-box-direction: normal;
+    font-weight: bold;
+}
+
+.kakaoMap-direct svg {
+    width: 8px;
+    height: 8px;
+    margin-left: 5px;
 }

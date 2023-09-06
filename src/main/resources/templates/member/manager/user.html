@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 페이지 메인</title>
+    <link rel="stylesheet" href="/css/member/manager/headerAndSideNav.css">
+    <link rel="stylesheet" href="/css/member/manager/user.css">
+    <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+
+    <style>
+        body {
+            font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<!--<header th:include="/manager_header.html :: header"></header>-->
+<header>
+    <div class="header_main">
+        <div class="header_logo"><img src="/img/member/logo.png"></div>
+        <div class="header_icons">로그아웃 아이콘</div>
+    </div>
+</header>
+<div class="side_nav">
+    <div class="side_nav_content snc_user">유저 정보 관리</div>
+    <div class="side_nav_content">동행 글 관리</div>
+    <div class="side_nav_content">일정 글 관리</div>
+    <div class="side_nav_content">문의글 관리</div>
+    <div class="side_nav_content">항공권 예약 관리</div>
+    <div class="side_nav_content">렌트카 예약 관리</div>
+</div>
+<div class="section">
+    <div class="main_content">
+        <h4 class="content_title">
+            유저 정보 관리
+        </h4>
+        <div class="content_boxes">
+            <div class="content_box">
+
+                오늘 탈퇴한 회원수 .
+
+            </div>
+            <div class="content_box">
+                <div class="content_box_inner">접속자수</div>
+            </div>
+            <div class="content_box">
+                <div class="content_box_inner">방문자 수?</div>
+            </div>
+        </div>
+        <div class="graphes">
+            <div class="mygraph mg1">
+
+
+                <canvas id="myChart"></canvas>
+
+            </div>
+            <div class="mygraph mg2" id=container>
+
+
+            </div>
+        </div>
+
+        <h4 class="content_title">
+            유저 목록
+        </h4>
+        <div class="usertable" id = "usertable">
+
+            <div class="usertable-inner">
+                <div class="field-bar">
+                    <div>
+                        아이디
+                    </div>
+
+                    <div>이름</div>
+                    <div>성별</div>
+                    <div>생년월일</div>
+                    <div>가입일</div>
+                    <div>삭제하기</div>
+                </div>
+
+                <th:block th:each="user : ${userList}">
+                    <div class="userinfo-box">
+
+
+                        <div th:text="${user.userId}"></div>
+                        <div th:text="${user.userName}"></div>
+                        <div th:text="${user.userGender}"></div>
+
+                        <div class="ml_4" th:text="${#dates.format(user.userDate, 'yyyy년 MM월 dd일')}"></div>
+
+                        <div class="ml_4" th:text="${#temporals.format(user.userRegdate, 'yyyy년 MM월 dd일')}"></div>
+
+                        <!--                        <div th:text="${user.userRegdate}">가입일</div>-->
+
+                        <div class="ml_4 user-del-btn" th:id="${user.userNumber}" onclick="deluser(this)">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                                <style>svg {
+                                    fill: #ff0000
+                                }</style>
+                                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                            </svg>
+                        </div>
+
+                    </div>
+                </th:block>
+
+
+                <div class="page-block">
+                    <div class="page-number-block" id="first-page"> 처음</div>
+                    <div class="page-number-block" id="left-page"> 이전</div>
+
+<!--                    <th:block th:each="number : ${#numbers.sequence(1, 31)}">-->
+<!--                        <span th:text ="${number}"></span>-->
+<!--                    </th:block>-->
+
+
+
+                        <div th:each="page : ${#numbers.sequence(pageStartNo, pageEndNo)}" class="page-number-block"
+                             th:onclick="'location.href = \'' + @{/pageTest} + '?pageNo='+${page}+'\''">
+
+
+                            <p th:text="${page}"></p>
+                        </div>
+                    <div class="page-number-block" id="right-page"> 다음</div>
+                    <div class="page-number-block" id="end-page"> 끝</div>
+
+                    <!--
+
+                    th:block으로 생겨나는 페이지 번호는 10의 단위로 끊어줘야한다.
+                    // 전체 데이터의 개수, 즉 sesle count로 글의 개수를 가지고 온다.
+                    // 글의 개수와 10을 나눈다. 그럼 총 나와야하는데 페이지 수가 나온다.
+                    // 이때 나머지가 있으면 한페이지를 추가해준다.
+                    // 이렇게 나온 페이지 수 만큼 ~ 밑에 pageno를 보여주면 안된다
+                    // 10씩 잘라내야하는데 이거는 일단 1~10까지 뽑는다.
+                    // 그리고 다음버튼을 누를 경우 pageno는 현재 머무르고 있는 페이지에 10을 더해준다.
+                    // 마찬가지로 다음버튼을 눌렀을떄도 현재 페이지 넘버의 값을 구한다.
+                    // 현재 페이지가 3이라면 10페이지 미만이므로 11페이지로 이동시킨다.
+                    // 즉 현재 페이지에 10을 나누고 그 몫에다가 1을 더하고 * 10 + 1을 한 페이지로 넘어간다는 것이다.
+                    // 물론 예외적인 상황이 너무나 많다.
+
+
+
+                    pageno을 쿼리스트링으로 받고 그 값을 매개변수로 쿼리를 셀렉트해서 그 만큼만 데이터를 가지고 온다.
+
+
+
+
+                    -->
+
+                </div>
+                <button onclick="location.href = `/manager/user#usertable`"></button>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/jq/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+<script src="https://kit.fontawesome.com/9647b4736a.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/member/manager/user.js"></script>
+
+</html>

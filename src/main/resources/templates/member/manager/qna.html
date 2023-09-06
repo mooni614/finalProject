@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 페이지 메인</title>
+    <link rel="stylesheet" href="/css/member/manager/headerAndSideNav.css">
+    <link rel="stylesheet" href="/css/member/manager/qna.css">
+</head>
+<body>
+<!--<header th:include="/manager_header.html :: header"></header>-->
+<header>
+    <div class="header_main">
+        <div class="header_logo"><img src="/img/member/logo.png"></div>
+        <div class="header_icons">로그아웃 아이콘</div>
+    </div>
+</header>
+<div class="side_nav">
+    <div class="side_nav_content snc_user">유저 정보 관리</div>
+    <div class="side_nav_content">동행 글 관리</div>
+    <div class="side_nav_content">일정 글 관리</div>
+    <div class="side_nav_content">문의글 관리</div>
+    <div class="side_nav_content">항공권 예약 관리</div>
+    <div class="side_nav_content">렌트카 예약 관리</div>
+</div>
+<div class="section">
+    <div class="main_content">
+        <h4 class="content_title">
+            유저 정보 관리
+        </h4>
+        <div class="content_boxes">
+            <div class="content_box">
+                유저1
+            </div>
+            <div class="content_box">
+                유저2
+            </div>
+            <div class="content_box">
+                유저3
+            </div>
+        </div>
+
+
+
+        <table border="1">
+            <thead>
+            <tr>
+                <td>번호</td>
+                <td>아이디</td>
+                <td>이름</td>
+                <td>패스워드</td>
+                <td>전화번호</td>
+                <td>성별</td>
+                <td>가입 날짜</td>
+                <td>mbti</td>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="user : ${userList}">
+                <tr>
+                    <td th:text="${user.userNumber}"></td>
+                    <td th:text="${user.userId}"></td>
+                    <td th:text="${user.userName}"></td>
+                    <td th:text="${user.userPassword}"></td>
+                    <td th:text="${user.userPhone}"></td>
+                    <td th:text="${user.userGender}"></td>
+                    <td th:text="${user.userDate}"></td>
+                    <td th:text="${user.userMbti}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</body>
+
+
+</html>

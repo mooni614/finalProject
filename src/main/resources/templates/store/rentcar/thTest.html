@@ -21,7 +21,7 @@
 테스트
 
 
-<form action="/rentcar/search" method="post">
+<form action="/rentcar/searchss" method="post">
     <div style="display: flex;"><input placeholder="차량명을 입력해주세요."
                                        class="_input_default_pczwv_3 CarNameSearchInput-dFPSqi filter_text_input"
                                        id="searchKeyword" name="searchKeyword">
@@ -33,11 +33,17 @@
 
 
 
-<div th:each="list : ${rentcarList}">
-    <div th:text="${list.getCar_name()}"></div>
-        <div th:text="${list.getCar_discount()}"></div>
-            <div th:text="${list.getCar_nation()}"></div>
-</div>
+<div th:text="${session.input_location}"></div>
+<div th:text="${session.depart_date}"></div>
+
+
+    <div th:text="${dto.getCom_id()}"></div>
+
+<div th:text="${dto.getCar_name()}"></div>
+
+<div th:text="${dto.getCar_price()}"></div>
+
+
 
 </body>
 

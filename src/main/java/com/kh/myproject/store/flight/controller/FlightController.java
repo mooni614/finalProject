@@ -1,101 +1,124 @@
 package com.kh.myproject.store.flight.controller;
 
+import com.kh.myproject.member.user.model.entity.User;
 import com.kh.myproject.store.flight.model.dto.FlightTicketDto;
-import com.kh.myproject.store.flight.model.entity.FlightTicket;
-import com.kh.myproject.store.flight.repository.FlightTicketRepository;
+import com.kh.myproject.store.flight.service.FlightService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 @RestController
 @SessionAttributes("user")
+@Slf4j
 public class FlightController {
 
     @Autowired
-    FlightTicketRepository repository;
+    FlightService flightService;
     //공항리스트
-    final String airportUrl = "https://apis.data.go.kr/1613000/DmstcFlightNvgInfoService/getArprtList?serviceKey=ZgRTKBFIJGjeIJ14VHOZrP9UMtis8xSBTJvnPqQIigzUQ4aIL8V03y5XCVZ5B8GAKHaJX%2FOz2UpnX%2FvgKqv38w%3D%3D&_type=json";
+    final String airportUrl = "https://apis.data.go.kr/1613000/DmstcFlightNvgInfoService/getArprtList?";
     //노선목록
-    final String flightOpratInfoUrl = "http://apis.data.go.kr/1613000/DmstcFlightNvgInfoService/getFlightOpratInfoList?serviceKey=ZgRTKBFIJGjeIJ14VHOZrP9UMtis8xSBTJvnPqQIigzUQ4aIL8V03y5XCVZ5B8GAKHaJX%2FOz2UpnX%2FvgKqv38w%3D%3D&";
+    final String flightOpratInfoUrl = "http://apis.data.go.kr/1613000/DmstcFlightNvgInfoService/getFlightOpratInfoList?";
+    private final String serviceKey = "serviceKey=ZgRTKBFIJGjeIJ14VHOZrP9UMtis8xSBTJvnPqQIigzUQ4aIL8V03y5XCVZ5B8GAKHaJX%2FOz2UpnX%2FvgKqv38w%3D%3D&";
+    private FlightTicketDto ticketDto;
 
-    @GetMapping("/store/flight/flights")
+    /*@GetMapping("/store/flight/flights")
     public ModelAndView flightMain(ModelAndView mav){
 
         mav.setViewName("store/flight/flights");
         return mav;
-    }
+    }*/
+    @GetMapping("/store/flight/flights")
+    public ModelAndView flightMain(@RequestParam(value = "startAirport", required = false) String startAirport,
+                                   @RequestParam(value = "endAirport", required = false) String endAirport,
+                                   @RequestParam(value = "startDate", required = false) String startDate,
+                                   ModelAndView mav) {
 
-    @GetMapping("/store/flight/flightDetail")
-    public ModelAndView flightReservation(ModelAndView mav){
-        mav.setViewName("store/flight/flightDetail");
+        log.info("startAirport={}", startAirport);
+        log.info("endAirport={}", endAirport);
+
+        if (startAirport != null) {
+            mav.addObject("startAirport", startAirport);
+            mav.addObject("endAirport", endAirport);
+            mav.addObject("startDate", startDate);
+        }
+
+        mav.setViewName("store/flight/flights");
+
         return mav;
     }
 
-    @GetMapping("/airportlist")
-    public String flight(){
-        StringBuilder result = new StringBuilder();
-        try{
-            URL url = new URL(airportUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String line;
+    @GetMapping("/pay/flightPayment")
+    public ModelAndView flightTest(ModelAndView mav,
+                                   @ModelAttribute("user") User user,
+                                   @ModelAttribute("ticket") FlightTicketDto ticket) {
 
-            while((line = br.readLine()) != null){
-                result.append(line);
-            }
-            br.close();
-            conn.disconnect();
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        return result.toString();
+//        List<FlightTicketInfo> list = flightService.getTicketList(user.getUserNumber());
+        log.info("ticketDto={}", ticketDto);
+        log.info("ticket={}", ticket);
+//        for (FlightTicketInfo item : list) {
+//            log.info("ticketItem={}", item);
+//        }
+
+        mav.addObject("ticket", ticketDto); //결제페이지에서 보여줄거
+//        mav.addObject("ticketList", list); //티켓 리스트
+        mav.setViewName("pay/flightPaymentPage");
+        return mav;
     }
 
-    @PostMapping("/searchflight")
-    public String searchFlight(@RequestParam("startAirport") String startAirport,
-                               @RequestParam("endAirport") String endAirport,
-                               @RequestParam("startDay") String startDay,
-                               Model model){
-
-        System.out.println(startDay.replace("-",""));
-        String flightInfoUrl = flightOpratInfoUrl;
-        flightInfoUrl += "depAirportId=" + startAirport + "&arrAirportId=" + endAirport +
-                        "&depPlandTime=" + startDay.replace("-","") + "&_type=json";
-
-        StringBuilder result = new StringBuilder();
-
-        try{
-            URL url = new URL(flightInfoUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String line;
-
-            while((line = br.readLine()) != null){
-                result.append(line);
-            }
-            br.close();
-            conn.disconnect();
-            System.out.println(result);
-
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return result.toString();
+    @GetMapping("/store/flight/airportList")
+    public ResponseEntity<?> getAirportList() {
+        String url = airportUrl;
+        url += serviceKey + "&_type=json";
+        return ResponseEntity.ok(flightService.getFlightList(url));
     }
 
-    @PostMapping("/saveFlight")
-    public String saveFlight(@RequestBody FlightTicketDto ticket){
-        System.out.println(ticket);
-        FlightTicket entity = ticket.toEntity();
+    @GetMapping("/tour/flight/searchFlight")
+    public ResponseEntity<?> searchFlight(@RequestParam("startAirport") String startAirport,
+                                          @RequestParam("endAirport") String endAirport,
+                                          @RequestParam("startDate") String startDate,
+                                          @RequestParam("pageNo") int pageNo,
+                                          Model model) {
 
-        repository.save(entity);
-        return "";
+        log.info("startAirport={}", startAirport);
+        log.info("endAirport={}", endAirport);
+        log.info("startDate={}", startDate);
+        log.info("pageNo={}", pageNo);
+
+
+        String url = flightOpratInfoUrl;
+        url += serviceKey + "pageNo=" + pageNo + "&depAirportId=" + startAirport + "&arrAirportId=" + endAirport +
+                "&depPlandTime=" + startDate.replace("-", "") + "&_type=json";
+
+
+        return ResponseEntity.ok(flightService.getFlightList(url));
     }
+
+    @PostMapping("/store/flight/reservationFlight")
+    public void saveFlight(@RequestBody FlightTicketDto ticket,
+                           @ModelAttribute("user") User user/*,
+                           ModelAndView mav*/) {
+        log.info("ticket={}", ticket); //티켓 정보
+        log.info("user={}", user.getUserId()); //로긴한 유저 정보
+        ticket.setUser(user); //dto에 유저정보 저장
+//        mav.addObject("ticket",ticket);
+        ticketDto = ticket; //전역변수에 저장
+//        mav.addObject("ticket", ticket);
+        //FlightTicketInfo ticketInfo = ticketDto.toEntity(); //dto를 entity로 변경
+//        mav.setViewName("/pay/flightPaymentPage");
+        //flightService.saveFlight(ticketInfo); //db에 저장
+    }
+
+    @GetMapping("/store/flight/remove")
+    public ModelAndView removeTicket(@RequestParam("ticketId")Long ticketId,
+                                     ModelAndView mav){
+        flightService.removeTicket(ticketId);
+
+        mav.setViewName("tourMain");
+        return mav;
+    }
+
+
 }

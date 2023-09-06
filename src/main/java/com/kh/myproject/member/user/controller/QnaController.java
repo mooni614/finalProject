@@ -36,7 +36,7 @@ public class QnaController {
             Model model
     ) {
 
-        // 기본키값을 넘겨줘야 save메서드에서 id값을 이용해 수정이 가능하다.
+        // 기본키값을 넘겨줘야 save메서드에서 id값을 이용해 수정이 가능하다....
 
         Qna qna = new Qna();
 
@@ -46,6 +46,6 @@ public class QnaController {
 
         qnaService.submitQna(qna);
 
-        return "redirect:/member/mypage";
+        return "member/user/mypage";
     }
 }

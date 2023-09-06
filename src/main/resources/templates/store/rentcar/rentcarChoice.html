@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 
     <script src="/jq/jquery-3.7.0.min.js"></script>
-
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/jq/jquery.form.min.js"></script>
+    <script src="/js/store/rentcar/rentcarChoice.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 
     <script src="/js/header.js"></script>
@@ -45,7 +46,7 @@
                                     <div class="input_title_text">차량 받을 장소</div>
                                 </div>
                                 <input class="search_input_round search_input_detail" readonly=""
-                                       placeholder="대여 위치를 선택해 주세요." value="강릉역"></div>
+                                       placeholder="대여 위치를 선택해 주세요." th:value="${session.input_location}"></div>
                             <div class="input_grid_number"></div>
                             <div class="input_title_and_detail">
                                 <div class="input_title"><img alt="이미지" class="input_title_icon"
@@ -77,19 +78,20 @@
     </div>
 
 
+
     <!--왼쪽 차량정보-->
 
-    <div width="auto" class="ContentsArea-ceSrvw carinfo_wrap">
-        <div class="Content-dVzyim carinfo_container">
-            <div class="Aside-ifoChX carinfo_box">
-                <div class="SubmodelInfoCardWrapper-jgZRZz carinfo_detail"><span class="AgeLabel-hyIxpM carinfo_year">20~현재 출시</span>
-                    <p class="SubmodelName-fBxKDh carinfo_name">모닝 어반</p>
-                    <p class="SubName-gORRDq carinfo_level">모닝 3세대 F/L</p><img
+    <div width="auto" class="carinfo_wrap">
+        <div class="carinfo_container">
+            <div class="carinfo_box">
+                <div class="carinfo_detail"><span class="carinfo_year" th:text="${session.caryear}"></span>
+                    <p class="SubmodelName-fBxKDh carinfo_name" th:text="${session.car_name}"></p>
+                    <p class="SubName-gORRDq carinfo_level" th:text="${session.cartype}"></p><img
                             src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/6.png"
                             style="width: 210px; margin-bottom: 15px;">
                     <p class="Desc-jMHTTH carinfo_text">이미지는 이해를 돕기 위한 예시 이며, 배차</p>
                     <p class="Desc-jMHTTH carinfo_text">차량의 색상과 디테일이 다를 수 있습니다. </p>
-                    <div class="PriceBox-isHGbR carinfo_price"><p class="PriceText-iWKXRR carinfo_carprice">80,000원</p>
+                    <div class="PriceBox-isHGbR carinfo_price"><p class="PriceText-iWKXRR carinfo_carprice" th:text="${session.carprice}"></p>
                         <p class="text_14px text_color_1d60e4">보험/딜리버리 포함가</p></div>
                 </div>
             </div>
@@ -111,27 +113,30 @@
 
                 <div class="infinite-scroll-component__outerdiv">
                     <div class="infinite-scroll-component " style="height: auto; overflow: hidden;">
-                        <div class="CarGroupListCardWrapper2-jioTfl company_list">
-                            <div class="CarGroupListCardWrapper-iDIXqD company_item">
-                                <div class="LabelArea-czDCAU company_item_box"><span class="Label-bLEvNO hidyRW">최신연식</span></div>
+
+
+                        <div class="CarGroupListCardWrapper2-jioTfl company_list" th:each="list : ${rentcarComList}">
+                            <div class="CarGroupListCardWrapper-iDIXqD company_item" th:onclick="|location.href='@{/pay/rentcarPaymentPage(Car_info_id=${list.getCar_info_id()})}'|">
+                               <!-- <div class="LabelArea-czDCAU company_item_box"><span class="Label-bLEvNO hidyRW">최신연식</span></div> -->
                                 <div style="display: flex; align-items: center; justify-content: space-between;">
                                     <div style="display: flex; align-items: center;"><span
-                                            class="RentCompanyName-juZUWk company_name">우리렌터카</span><img
+                                            class="company_name" th:text="${list.getCom_id().getCom_name()}"></span><img
                                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8BAMAAADI0sRBAAAALVBMVEVHcEz/tT39s0L9s0L9s0L9s0L/tEL9s0L9s0L/s0L/tEH9s0L9s0L8s0L9s0O5drtDAAAADnRSTlMAD97xonwdylhCMWuKtfAt5loAAAFdSURBVDjLY2AYKkA0EJ8sm94jATzSLO/eOeCRFn73zhCP9L53717jkdZ79+45blnOd0CwAJ/L8LlNDiSN221xIOnX+Fz27t0jvC57924CDmleiDQut+VBpB/ic9m7d0+xy2bpQaQfLcOIyBkx7lBJsIKSo50JcMklxe+wAHMvqNZ32MFjiAGsOKTfBYCluXFJb4AYboddFpbsFmOXtoKnT6ya4V5LxyZdCPc4Yx2m7HMBjLhCBheQQ9UPXfYJSqDzYA8S5AyADNATHAeqdAN6nM5Dln2JKyXhSk99yNIvMKTPIUu/wZBGCTjMbIoSq4/RZblQPYaei7mxJRS0rI0A6BmJCVVaAVvOBzq5Dnu4QML08QZWO6yhCsl+1xgYcrFmw3sgQQsQqxnEeoslVJ6AkxejH2a4gPLZI2ipwQlK1wko0oxAkQPIKUsAPcKqEJzlGFHGEYHMa20Y/DUTACOBKZveHNTBAAAAAElFTkSuQmCC"
                                             width="20px" height="20px" alt="ratingStar" class="mr-[2px]"><span
                                             class="text-[16px] font-medium leading-normal">4.6</span></div>
-                                    <span class="text_23px font-semibold">80,000원</span></div>
+                                    <span class="text_23px font-semibold" th:text="${list.getCar_discount()}">80,000원</span></div>
                                 <div style="display: flex; align-items: center; justify-content: space-between;">
                                     <div class="CarInfoArea-byIURY company_text_box">21~23년
-                                        <div class="TextBorder-imbBgn company_text_detail"></div>
-                                        만 26세
-                                        <div class="TextBorder-imbBgn company_text_detail"></div>
+                                        <div class="TextBorder-imbBgn company_text_detail_line"></div>
+
+                                        <div class="TextBorder-imbBgn company_text_detail_line"></div>
                                         가솔린
-                                        <div class="TextBorder-imbBgn kqcompany_text_detailZvjT"></div>
+                                        <div class="TextBorder-imbBgn company_text_detail_line" ></div>
                                         5인승
                                     </div>
-                                    <span class="OriginalPrice-elYHeW company_price">150,000원</span></div>
-                                <div class="CarOptionBox-cQwFKH company_option">옵션 없음</div>
+                                    <span class="OriginalPrice-elYHeW company_price" th:text="${list.getCar_price()}"></span></div>
+                                <div class="CarOptionBox-cQwFKH company_option" th:text="${list.getCar_option()}"></div>
+                                <div><input type="hidden" id="Car_info_id" name="Car_info_id" th:value="${list.getCar_info_id()}"> </div>
                             </div>
                         </div>
                     </div>
@@ -143,8 +148,5 @@
 
 
 </body>
-<script src="/jq/jquery-3.7.0.min.js"></script>
-<script src="/jq/jquery.form.min.js"></script>
-<script src="/js/join.js"></script>
 
 </html>
