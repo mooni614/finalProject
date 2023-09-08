@@ -156,6 +156,7 @@
     border-radius: 20px;
     font-size: 20px;
     box-shadow: 1px 1px 5px #00000026;
+
 }
 
 /*서치바 css 종료*/
@@ -249,7 +250,7 @@
 .reserv_filter_text {
     font-size: 15px;
     font-weight: bold;
-    margin: 20px 0px 0px;
+    margin: 20px 0px 10px;
     position: relative;
 }
 
@@ -285,7 +286,8 @@
 
 .result_item:hover{
 
-    box-shadow: 5px 5px 5px 5px;
+    box-shadow: 5px 5px 5px 5px gray;
+
 
 }
 
@@ -347,7 +349,8 @@
     margin: 0px 0px 0px;
 }
 
-.filter_button {
+/*필터 버튼 활성화/비활성화 css*/
+.nation_filter_button{
     height: 32px;
     padding: 7px 14px;
     display: flex;
@@ -363,7 +366,104 @@
     background-color: white;
 }
 
-.filter_button_default {
+.type_filter_button{
+    height: 32px;
+    padding: 7px 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1.31;
+    border: 1px solid gray;
+    color: black;
+    background-color: white;
+}
+
+
+.oil_filter_button{
+    height: 32px;
+    padding: 7px 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1.31;
+    border: 1px solid gray;
+    color: black;
+    background-color: white;
+}
+
+.age_filter_button{
+    height: 32px;
+    padding: 7px 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1.31;
+    border: 1px solid gray;
+    color: black;
+    background-color: white;
+}
+
+.nation_filter_button.active {
+    height: 32px;
+    padding: 7px 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1.31;
+    border: 1px solid #00ce7c;
+    color: #00ce7c;
+    background-color: white;
+}
+
+.type_filter_button.active {
+    height: 32px;
+    padding: 7px 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1.31;
+    border: 1px solid #00ce7c;
+    color: #00ce7c;
+    background-color: white;
+}
+
+.oil_filter_button.active {
+    height: 32px;
+    padding: 7px 14px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1.31;
+    border: 1px solid #00ce7c;
+    color: #00ce7c;
+    background-color: white;
+}
+
+.age_filter_button.active {
     height: 32px;
     padding: 7px 14px;
     display: flex;
@@ -380,8 +480,6 @@
 }
 
 
-
-
 .result_category_box {
     gap: 10px;
     display: flex;
@@ -389,6 +487,7 @@
     align-items: center;
 }
 
+/*
 .result_category_text_on {
     all: unset;
     font-size: 14px;
@@ -404,6 +503,8 @@
     color: rgb(204, 204, 204);
     cursor: pointer;
 }
+
+*/
 
 .result_category_line {
     width: 2px;
@@ -429,6 +530,15 @@
     height: 40px;
     font-size: 14px;
     font-weight: 500;
+    background-color: #00ce7c;
+
+
+    border-width: 0px;
+    border-radius: 5px;
+    color: #fff;
+    outline: none;
+
+
 }
 
 .filter_text_input {
@@ -473,4 +583,23 @@
     text-align: center;
     outline: 0;
     border: 0;
+}
+
+
+/* 정렬 순 관련 css */
+
+.result_category_text {
+    all: unset;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(204, 204, 204);
+    cursor: pointer; /* 초기 상태에서 폰트색을 검은색으로 설정 */
+}
+
+.result_category_text.active {
+    all: unset;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(40, 40, 40);
+    cursor: pointer; /* 활성화된 버튼의 폰트색을 검은색으로 유지 */
 }

@@ -75,6 +75,9 @@ public class RentcarController {
         session.setAttribute("arrive_date", arrive_date);
         session.setAttribute("input_birth", input_birth);
 
+
+
+
         return "store/rentcar/rentcarReserve";
 
     }
@@ -91,7 +94,7 @@ public class RentcarController {
 */
 
 
-    //키워드 검색결
+    //키워드 검색결과
 
     @GetMapping("/rentcarReserve")
     public ResponseEntity<List<RentcarInfoDTO>> reserveSearch(@RequestParam(value = "searchKeyword") String searchKeyword) {
@@ -105,6 +108,8 @@ public class RentcarController {
 
 
     }
+
+    //정렬기준 결과 가져오기
 
     @GetMapping("/highPriceList")
     public ResponseEntity<List<RentcarInfoDTO>> highPriceList() {
@@ -133,6 +138,189 @@ public class RentcarController {
 
         return ResponseEntity.ok(rentcarList);
     }
+
+
+    //필터링 버튼 결과 가져오기
+    // 구분 전체
+    @GetMapping("/nationall")
+    public ResponseEntity<List<RentcarInfoDTO>> nationall() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindBynationAll();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+    // 구분 국내
+    @GetMapping("/nationDomestic")
+    public ResponseEntity<List<RentcarInfoDTO>> nationDomestic() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindBynationDomestic();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+    // 구분 해외
+    @GetMapping("/nationOversea")
+    public ResponseEntity<List<RentcarInfoDTO>> nationOversea() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindBynationOversea();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+    // 차종 전체
+    @GetMapping("/FindByTypeAll")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByTypeAll() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByTypeAll();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+    // 차종 경형
+    @GetMapping("/FindByTypeSmall")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByTypeSmall() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByTypeSmall();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+    // 차종 승용
+    @GetMapping("/FindByTypeMid")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByTypeMid() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByTypeMid();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+    // 차종 suv
+    @GetMapping("/FindByTypeSuv")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByTypeSuv() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByTypeSuv();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+    // 차종 승합
+    @GetMapping("/FindByTypeRv")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByTypeRv() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByTypeRv();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+
+
+
+
+    // 유종 전체
+    @GetMapping("/FindByOilAll")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByOilAll() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByOilAll();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+
+
+    // 유종 디젤
+    @GetMapping("/FindByOilDiesel")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByOilDiesel() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByOilDiesel();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+
+
+    // 유종 전기
+    @GetMapping("/FindByOilElec")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByOilElec() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByOilElec();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+
+
+    // 유종 가솔린
+    @GetMapping("/FindByOilGasoline")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByOilGasoline() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByOilGasoline();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+
+
+    // 유종 lpg
+    @GetMapping("/FindByOilLpg")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByOilLpg() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByOilLpg();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+
+
+    // 유종 하이브리드
+    @GetMapping("/FindByOilHybrid")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByOilHybrid() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByOilHybrid();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+
+
+    // 나이 21세 이상
+    @GetMapping("/FindByAgeDown")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByAgeDown() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByAgeDown();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+
+    // 나이 26세 이상
+    @GetMapping("/FindByAgeUp")
+    public ResponseEntity<List<RentcarInfoDTO>> FindByAgeUp() {
+
+
+        List<RentcarInfoDTO> rentcarList = rentcarService.FindByAgeUp();
+
+        return ResponseEntity.ok(rentcarList);
+    }
+
+
+
+
 
 
 

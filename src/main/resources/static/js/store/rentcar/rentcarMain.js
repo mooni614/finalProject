@@ -73,6 +73,26 @@ $(document).ready(function () {
     });
 
 
+    /* 하단 공지사항 카테고리 클릭시 효과 바뀌는 클릭 이벤트*/
+
+    $('#qnaBtn1').addClass('active');
+
+    $('#qnaBtn1').click(function() {
+        $(this).addClass('active');
+        $('#qnaBtn2, #qnaBtn3').removeClass('active');
+    });
+
+    $('#qnaBtn2').click(function() {
+        $(this).addClass('active');
+        $('#qnaBtn1, #qnaBtn3').removeClass('active');
+    });
+
+    $('#qnaBtn3').click(function() {
+        $(this).addClass('active');
+        $('#qnaBtn1, #qnaBtn2').removeClass('active');
+    });
+
+
 });
 
 
@@ -117,7 +137,9 @@ $(function () {
 
         dateFormat: 'mm.dd' //Input Display Format 변경
 
-        , nextText: "다음"
+        , nextText: ">"
+
+        ,prevText: "<"
 
         , inline: true
 
@@ -171,7 +193,9 @@ $(function () {
 
         dateFormat: 'mm.dd' //Input Display Format 변경
 
-        , nextText: "다음"
+        , nextText: ">"
+
+        ,prevText: "<"
 
         , inline: true
 
@@ -276,6 +300,10 @@ $(function () {
 
         $("#arrive_date_check").text(formattedDateTime); // 선택한 날짜와 시간 표시
     }
+
+
+
+
 
 
 /*

@@ -51,4 +51,74 @@ public interface RentcarRepository extends JpaRepository<RentcarInfoEntity, Long
     @Query(value = "SELECT * FROM car_info ci INNER JOIN com_info co ON ci.com_id = co.com_id WHERE ci.car_info_id=:Car_info_id", nativeQuery = true)
     RentcarInfoEntity FindAllInfo(@Param("Car_info_id") Long Car_info_id);
 
+
+
+    //국내외구분 필터링 쿼리_전체
+    @Query(value="SELECT * FROM car_info ci ORDER BY ci.car_nation ASC",nativeQuery = true)
+    List<RentcarInfoEntity>  FindBynationAll();
+
+    //국내외구분 필터링 쿼리_국내
+    @Query(value="SELECT * FROM car_info ci WHERE ci.car_nation ='국내' ORDER BY ci.car_nation ASC",nativeQuery = true)
+    List<RentcarInfoEntity>  FindBynationDomestic();
+
+    //국내외구분 필터링 쿼리_해외
+    @Query(value="SELECT * FROM car_info ci WHERE ci.car_nation ='해외' ORDER BY ci.car_nation ASC",nativeQuery = true)
+    List<RentcarInfoEntity>  FindBynationOversea();
+
+
+    //차종필터링 쿼리_전체
+    @Query(value="SELECT * FROM car_info ci ORDER BY ci.car_type ASC",nativeQuery = true)
+    List<RentcarInfoEntity> FindByTypeAll();
+
+    //차종필터링 쿼리_경형
+    @Query(value="SELECT * FROM car_info ci WHERE ci.car_type ='경형' ORDER BY ci.car_type ASC",nativeQuery = true)
+    List<RentcarInfoEntity> FindByTypeSmall();
+
+    //차종필터링 쿼리_승용
+    @Query(value="SELECT * FROM car_info ci WHERE ci.car_type ='승용' ORDER BY ci.car_type ASC",nativeQuery = true)
+    List<RentcarInfoEntity>  FindByTypeMid();
+
+    //차종필터링 쿼리_suv
+    @Query(value="SELECT * FROM car_info ci WHERE ci.car_type ='SUV' ORDER BY ci.car_type ASC",nativeQuery = true)
+    List<RentcarInfoEntity>  FindByTypeSuv();
+
+    //차종필터링 쿼리_승합
+    @Query(value="SELECT * FROM car_info ci WHERE ci.car_type ='승합' ORDER BY ci.car_type ASC",nativeQuery = true)
+    List<RentcarInfoEntity>  FindByTypeRv();
+
+
+    //유종필터링 쿼리_전체
+    @Query(value="SELECT * FROM car_info ci ORDER BY ci.oil_type ASC",nativeQuery = true)
+    List<RentcarInfoEntity>  FindByOilAll();
+
+    //유종필터링 쿼리_디젤
+    @Query(value="SELECT * FROM car_info ci WHERE ci.oil_type='디젤' ORDER BY ci.oil_type ASC",nativeQuery = true)
+    List<RentcarInfoEntity> FindByOilDiesel();
+
+    //유종필터링 쿼리_전기
+    @Query(value="SELECT * FROM car_info ci WHERE ci.oil_type='전기' ORDER BY ci.oil_type ASC",nativeQuery = true)
+    List<RentcarInfoEntity>  FindByOilElec();
+
+    //유종필터링 쿼리_가솔린
+    @Query(value="SELECT * FROM car_info ci WHERE ci.oil_type='가솔린' ORDER BY ci.oil_type ASC",nativeQuery = true)
+    List<RentcarInfoEntity>  FindByOilGasoline();
+
+    //유종필터링 쿼리_LPG
+    @Query(value="SELECT * FROM car_info ci WHERE ci.oil_type='LPG' ORDER BY ci.oil_type ASC",nativeQuery = true)
+    List<RentcarInfoEntity>  FindByOilLpg();
+
+    //유종필터링 쿼리_하이브리드
+    @Query(value="SELECT * FROM car_info ci WHERE ci.oil_type='하이브리드' ORDER BY ci.oil_type ASC",nativeQuery = true)
+    List<RentcarInfoEntity>  FindByOilHybrid();
+
+
+    //나이필터링 쿼리_21세이상
+    @Query(value="SELECT * FROM car_info ci WHERE ci.driver_age='21세 이상'",nativeQuery = true)
+    List<RentcarInfoEntity>  FindByAgeDown();
+
+    //나이필터링 쿼리_26세이상
+    @Query(value="SELECT * FROM car_info ci WHERE ci.driver_age='26세 이상'",nativeQuery = true)
+    List<RentcarInfoEntity>  FindByAgeUp();
+
+
 }

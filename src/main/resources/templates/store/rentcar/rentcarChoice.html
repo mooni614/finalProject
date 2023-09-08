@@ -12,9 +12,10 @@
     <script src="/js/store/rentcar/rentcarChoice.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
-
     <script src="/js/header.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script src="https://kit.fontawesome.com/9647b4736a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
@@ -116,7 +117,7 @@
 
 
                         <div class="CarGroupListCardWrapper2-jioTfl company_list" th:each="list : ${rentcarComList}">
-                            <div class="CarGroupListCardWrapper-iDIXqD company_item" th:onclick="|location.href='@{/pay/rentcarPaymentPage(Car_info_id=${list.getCar_info_id()})}'|">
+                            <div class="CarGroupListCardWrapper-iDIXqD company_item" id="choiceCompany" th:data-car-info-id="${list.getCar_info_id()}" onclick="moveToPay(this)">
                                <!-- <div class="LabelArea-czDCAU company_item_box"><span class="Label-bLEvNO hidyRW">최신연식</span></div> -->
                                 <div style="display: flex; align-items: center; justify-content: space-between;">
                                     <div style="display: flex; align-items: center;"><span
@@ -145,6 +146,12 @@
         </div>
     </div>
 </div>
+
+
+    <div>
+        <input type="hidden" id="sessionUser" th:value="${session.user}">
+    </div>
+
 
 
 </body>

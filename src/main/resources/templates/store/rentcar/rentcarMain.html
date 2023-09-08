@@ -26,30 +26,29 @@
 
 <div style="margin-top:0px;">
     <div style="position: relative; width: 100%; height: 300px;">
-        <div style="position: absolute; width: 100%; height: 300px; background: rgba(0, 0, 0, 0.5); justify-content: center; display: flex; z-index: 52;">
+        <div style="position: absolute; width: 100%; height: 300px; justify-content: center; display: flex; z-index: 52;">
             <div style="width: 100%; max-width: 1140px; line-height: 1.31; font-size: 30px; position: absolute; color: rgb(255, 255, 255); z-index: 51; bottom: 110px;">
                 <div>이제 렌터카도</div>
-                <div> 트립소다와 함께하세요</div>
+                <div> 여행시그널과 함께하세요</div>
             </div>
         </div>
-        <video playsinline="" autoplay="" loop=""
-               style="object-fit: cover; height: 300px; width: 100%; position: absolute; z-index: 50;">
-            <source src="/images/video_main.mp4" type="video/mp4">
-        </video>
+        <img src="/img/store/rentcar/rentcarMain.jpg"
+             style="object-fit: cover; height: 300px; width: 100%; position: absolute; z-index: 50;">
+
     </div>
 
     <!--서치바-->
     <div class="search_bar_wrap" style="height: 100px;">
 
-<form action="/MainSearch" method="post">
-        <div class="search_bar_wrap_container">
-            <div style="height: 0px; background: transparent;"></div>
-            <div class="search_bar_wrap_container_line" style="height: 0px;">
-                <div class="_content_1o5s2_135" style="grid-template-columns: none; margin-top: 30px;"></div>
-            </div>
-            <div class="search_bar_box" style="top: 0px;">
-                <div class="_search_bar_1o5s2_35">
-                    <div class="search_bar_input_box">
+        <form action="/MainSearch" method="post">
+            <div class="search_bar_wrap_container">
+                <div style="height: 0px; background: transparent;"></div>
+                <div class="search_bar_wrap_container_line" style="height: 0px;">
+                    <div class="_content_1o5s2_135" style="grid-template-columns: none; margin-top: 30px;"></div>
+                </div>
+                <div class="search_bar_box" style="top: 0px;">
+                    <div class="_search_bar_1o5s2_35">
+                        <div class="search_bar_input_box">
 
 
                             <div class="search_input_container"
@@ -61,7 +60,8 @@
                                                                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAANlBMVEVHcEwoKCgnJycnJycnJycoKCgmJiYnJycgICAoKCgnJycoKCgnJycoKCgoKCgmJiYmJiYoKCiAjm0FAAAAEXRSTlMAYPBwz4A39xAgxaCwwOBQkdEtV/wAAAGdSURBVEjHxVVJtoQgDPwMkTDr/S/7w2SrgNqrZuF7kqkqCcnf368O4ntdLTzf6HAv9Av1GLbDCfFBffHb5fjlTp9lKI5lKJq5DI3N9W2Sw4EuQrqxM/2VhPLCU0u6XOd4bJdNtDNUmgRuJHBES4/vZfWvI0gJsWqhHHpaKEDNoFAqcVVKdKJzgJINNEU7fQ227HUhkMQFgknaBsAkG7PT6zqCGBQ8yXEpXApVUBGL2NcAspbalGmXhn50lV5r4Suv2HSaday0/cQAGu7GByYG1GZY0Cr43IIqzCgl/GIQaoSxAUUIc0juFSRbRWxIWvQ9LqrncVp937CpmDgr3KcNDkfuVSW3ygE4ag1Vqg89hew57N1MWczPufZ7GD0h5Pvttb2hT2q7bg+IrVKuTHeuuhAwmQ1hOATE8GHl9zaZf769iVPgMJkN1dc6mhnTSS76ESTmgJq75RrU3q2RcAag+YjWySP/jLMCiD+sorgdLTCE5WkDsQfUwxbJFmjty8WY5rtH3Pv9nYWU9wXoV9H9chsuR/YNc8b5V/o/Pf+nWBvnz7ADrAAAAABJRU5ErkJggg==">
                                         <div class="input_title_text">차량 받을 장소</div>
                                     </div>
-                                    <input class="search_input_round search_input_detail" id="input_location" name="input_location"
+                                    <input class="search_input_round search_input_detail" id="input_location"
+                                           name="input_location"
                                            readonly=""
                                            placeholder="대여 위치를 선택해 주세요."></div>
                                 <div class="input_grid_number"></div>
@@ -70,10 +70,12 @@
                                                                   src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwoKCgoKCgoKCgoKCgmJiYnJycnJycnJycnJycoKCgaae9ZAAAACnRSTlMAgD9AwCfmW9CrPNuh5QAAAKhJREFUOMtjYKAbYC/AZIFB1UIYS2o5isSsJTCW10oUCa8lmCwGViUlpa4VSlAAZgWAJaJWYYClYAkrTInFEIllLi5ZQAwBIFYWVGIhuuVSCAkpuCNnLUSRCEuFSYBYUAlWJQxAtnOXCKIBL4TlqADmqpXods9aTMAOKlo+KjEgEitQkxqrUhdEggM5UlPBCbABkkSzUNNg1KplAdAcjBTdBSBuAZ0KEQCFxaxY4wVeUAAAAABJRU5ErkJggg==">
                                         <div class="input_title_text">날짜 및 시간</div>
                                     </div>
-                                    <input class="search_input_round_date search_input_detail" id="depart_date" name="depart_date"
+                                    <input class="search_input_round_date search_input_detail" id="depart_date"
+                                           name="depart_date"
                                            readonly=""
                                            placeholder="대여날짜 선택">
-                                    <input class="search_input_round_date search_input_detail" id="arrive_date" name="arrive_date"
+                                    <input class="search_input_round_date search_input_detail" id="arrive_date"
+                                           name="arrive_date"
                                            readonly=""
                                            placeholder="반납날짜 선택">
 
@@ -87,7 +89,8 @@
                                     <div class="input_birth_wrap">
 
                                         <input type="text"
-                                               class="search_input_round search_input_detail" id="input_birth" name="input_birth"
+                                               class="search_input_round search_input_detail" id="input_birth"
+                                               name="input_birth"
                                                placeholder="YYMMDD"
                                                style="height: 20px; margin-top: 0px;">
 
@@ -95,14 +98,14 @@
                                 </div>
                             </div>
                             <button type="submit" id="main_rentcar_search"
-                                   class="rentcar_search_button main_search_button">검색
+                                    class="rentcar_search_button main_search_button">검색
                             </button>
 
-                    </div>
+                        </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
 
         </form>
         <!--대여위치정하기 토글창-->
@@ -113,15 +116,15 @@
                     <p>차량 받을 장소를</p>
                     <p>선택해주세요.</p>
                 </div>
-
-                <div class="result_select_area">
-                    <div class="result_select_area_text" style="">지도 검색</div>
-                    <div class="result_select_area_text" style="font-weight: bold;">공항</div>
-                    <div class="result_select_area_text" style="">지역별</div>
-                </div>
-
+                <!--
+                                <div class="result_select_area">
+                                    <div class="result_select_area_text" style="">지도 검색</div>
+                                    <div class="result_select_area_text" style="font-weight: bold;">공항</div>
+                                    <div class="result_select_area_text" style="">지역별</div>
+                                </div>
+                -->
                 <div class="result_location_map">
-                    <div id="map" class="map_container" style="width:640px;height:380px;">
+                    <div id="map" class="map_container" style="width:774px; height:380px;">
 
                     </div>
 
@@ -292,43 +295,44 @@
         <div width="auto" class="ContentsArea-ceSrvw main_contents_area">
             <div class="LeaveContainer-dblKwJ leave_warp">
                 <div class="SectionTitle-itOSnk main_titles_text">어디로 떠나세요?</div>
+
                 <div class="leave_banner_container">
                     <div class="leave_banner_container_item">
-                        <div class="area_name">제주</div>
-                        <div class="img_jeju"></div>
+                        <div class="area_name jeju">제주</div>
+                        <img src="/img/store/rentcar/jeju.jpeg" style="width:160px; height:160px;">
                     </div>
-                    <div data-name="seoul" data-pick-address="서울역(철도역)"
-                         data-pick-full-address="서울특별시 용산구 한강대로 405 서울역(철도역)" class="leave_banner_container_item"
-                         id="/tripsoda/home/어디로떠나세요-서울">
+
+                    <div class="leave_banner_container_item">
                         <div class="area_name">서울</div>
-                        <div class="img_seoul"></div>
+                        <img src="/img/store/rentcar/seoul.jpg" style="width:160px; height:160px;">
                     </div>
-                    <div data-name="gangneung" data-pick-address="강릉역" data-pick-full-address="강원도 강릉시 용지로 174-10"
-                         class="leave_banner_container_item" id="/tripsoda/home/어디로떠나세요-강릉">
+
+
+                    <div class="leave_banner_container_item">
                         <div class="area_name">강릉</div>
-                        <div class="img_gangneung"></div>
+                        <img src="/img/store/rentcar/gangneung.jpeg" style="width:160px; height:160px;">
                     </div>
-                    <div data-name="busan" data-pick-address="부산역"
-                         data-pick-full-address="부산광역시 동구 중앙대로 206 한국철도공사부산지역본부" class="leave_banner_container_item"
-                         id="/tripsoda/home/어디로떠나세요-부산">
+
+                    <div class="leave_banner_container_item">
                         <div class="area_name">부산</div>
-                        <div class="img_busan"></div>
+                        <img src="/img/store/rentcar/busan.jpeg" style="width:160px; height:160px;">
                     </div>
-                    <div data-name="yeosu" data-pick-address="여수엑스포역" data-pick-full-address="전라남도 여수시 망양로 2 여수엑스포역"
-                         class="leave_banner_container_item" id="/tripsoda/home/어디로떠나세요-여수">
+
+
+                    <div class="leave_banner_container_item">
                         <div class="area_name">여수</div>
-                        <div class="img_yeosu"></div>
+                        <img src="/img/store/rentcar/yeosu.jpeg" style="width:160px; height:160px;">
                     </div>
-                    <div data-name="gyeongju" data-pick-address="신경주역"
-                         data-pick-full-address="경상북도 경주시 건천읍 신경주역로 80 신경주KTX역사" class="leave_banner_container_item"
-                         id="/tripsoda/home/어디로떠나세요-경주">
+
+
+                    <div class="leave_banner_container_item">
                         <div class="area_name">경주</div>
-                        <div class="img_gyeongju"></div>
+                        <img src="/img/store/rentcar/gyeongju.jpeg" style="width:160px; height:160px;">
                     </div>
                 </div>
             </div>
             <div class="TrustContainer-kZmPti trust_wrap">
-                <div class="SectionTitle-itOSnk main_titles_text trust-title">Trust, 트립소다</div>
+                <div class="SectionTitle-itOSnk main_titles_text trust-title">Trust, 여행시그널</div>
                 <div class="SectionSubTitle-yYCAc main_details_text">소중한 당신의 이동 경험을 위해 믿을 수 있는 서비스를 제공합니다.</div>
                 <div class="trust_banner_container">
                     <div class="trust_banner_container_item">
@@ -371,7 +375,7 @@
     </div>
     <div class="PickContainer-dBVDSX pick_wrap">
         <div class="PickWrap-jYKquY pick_container">
-            <div class="SectionTitle-itOSnk main_titles_text">Pick, 트립소다</div>
+            <div class="SectionTitle-itOSnk main_titles_text">Pick, 여행시그널</div>
             <div class="SectionSubTitle-yYCAc main_details_text">고객이 선택한 렌터카 주간 TOP 5!</div>
             <div class="pick_content">
                 <div class="pick_content_left">
@@ -503,22 +507,28 @@
                                 alt="이미지" class="qna_open_icon false"
                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
                                 style="width: 25px; height: 25px;"></div>
+
                         <div class="qna_line undefined" style="max-height: 0px;">
+
                             <div class="qna_content_accordion"><p>예약자 외 제2운전자까지 등록이 가능하며, 대여조건(보험연령)이 동일해야 합니다. 계약서 작성 시
                                 제2운전자의 면허증까지 지참해야 하며 계약서 작성 후 제2운전자 추가는 불가합니다.</p>
                             </div>
                         </div>
+
+
                     </div>
                     <div class="qna_content_container">
                         <div class="qna_title_wrap"><span>Q. 예약한 반납 시간보다 일찍 반납하면 미사용 시간에 대한 환불이 가능한가요?</span><img
                                 alt="이미지" class="qna_open_icon false"
                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
                                 style="width: 25px; height: 25px;"></div>
+
                         <div class="qna_line undefined" style="max-height: 0px;">
                             <div class="qna_content_accordion"><p>예약한 반납 시간보다 일찍 차량을 반납하실 수 있으나, 미사용 시간에 대한 대여요금 환불이 없을
                                 수
                                 있습니다. 자세한 내용은 업체에 문의해 주세요.</p>
                             </div>
+
                         </div>
                     </div>
                     <div class="qna_content_container">
@@ -527,15 +537,16 @@
                                 src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
                                 style="width: 25px; height: 25px;">
                         </div>
+
                         <div class="qna_line undefined" style="max-height: 0px;">
                             <div class="qna_content_accordion">
                                 <p>차량을 대여한 렌터카 업체에 연락하여 연장 요청을 해주셔야 합니다. 차량 연장으로 인한 추가 비용이
                                     발생할 수 있으며, 다른 예약건으로 인하여 연장이 불가할 수 있습니다.</p>
                             </div>
+
                         </div>
                     </div>
 
-                    <button type="button" class="_button_default_1vx5o_3 QnaViewMoreButton-cBKzop lkMLbw ">더보기</button>
                 </div>
 
 
@@ -575,6 +586,7 @@
         </div>
     </div>
 </div>
+
 
 
 </body>

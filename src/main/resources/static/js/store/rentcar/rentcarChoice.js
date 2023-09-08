@@ -1,16 +1,47 @@
-
-
-
+$(document).ready(function () {
 /*
-function moveToPaypage(){
+    $('#choiceCompany').click(function () {
 
-    var Car_info_id = document.getElementById('Car_info_id').getAttribute('th:value');
-    var url = '/pay/rentcarPaymentPage?car_info_id=' + Car_info_id;
+        if ($('#sessionUser').val() === '') {
+            Swal.fire('로그인후 이용하세요.', '', 'error').then(function () {
 
-    // 여기에서 url을 사용하여 페이지 이동을 수행하거나 원하는 작업을 수행할 수 있습니다.
-    location.href = url;
+                location.href = '/member/login';
+            });
+        } else {
+
+
+
+            var carInfoId = $('#choiceCompany').data('car-info-id'); // 이 부분을 추가하여 car_info_id 값을 가져오기
+
+            console.log(carInfoId);
+            location.href = '/pay/rentcarPaymentPage?Car_info_id='+ carInfoId; // car_info_id를 사용하여 URL을 생성하고 이동
+
+
+        }
+*/
+
+
+    });
+
+function moveToPay(e) {
+
+    if ($('#sessionUser').val() === '') {
+        Swal.fire('로그인후 이용하세요.', '', 'error').then(function () {
+
+            location.href = '/member/login';
+        });
+    } else {
+
+
+        var carInfoId = e.dataset.carInfoId; // 이 부분을 추가하여 car_info_id 값을 가져오기
+
+        console.log(carInfoId);
+
+
+        location.href = '/pay/rentcarPaymentPage?Car_info_id=' + carInfoId; // car_info_id를 사용하여 URL을 생성하고 이동
+
+
+    }
 
 }
 
-
- */

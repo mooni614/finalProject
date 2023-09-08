@@ -87,14 +87,14 @@
         </div>
     </div>
 
-<!--
-    <div>
-        <input type="hidden" id="th_input_location" th:value="${input_location}"/>
-        <input type="hidden" id="th_depart_date" th:value="${depart_date}"/>
-        <input type="hidden" id="th_arrive_date" th:value="${arrive_date}"/>
-        <input type="hidden" id="th_input_birth" th:value="${input_birth}"/>
-    </div>
--->
+    <!--
+        <div>
+            <input type="hidden" id="th_input_location" th:value="${input_location}"/>
+            <input type="hidden" id="th_depart_date" th:value="${depart_date}"/>
+            <input type="hidden" id="th_arrive_date" th:value="${arrive_date}"/>
+            <input type="hidden" id="th_input_birth" th:value="${input_birth}"/>
+        </div>
+    -->
 
     <!--검색 필터링-->
     <div width="auto" class="ContentsArea-ceSrvw reserv_contents_area">
@@ -111,66 +111,77 @@
                         검색</p>
 
 
+                        <div style="display: flex;"><input placeholder="차량명을 입력해주세요."
+                                                           class="_input_default_pczwv_3 CarNameSearchInput-dFPSqi filter_text_input"
+                                                           id="searchKeyword" name="searchKeyword">
+                            <button id="reserve_search_btn"
+                                    class="_button_default_1vx5o_3 CarNameSearchButton-cvlOy filter_search_button ">
+                                검색
+                            </button>
+                        </div>
 
-                            <div style="display: flex;"><input placeholder="차량명을 입력해주세요."
-                                                               class="_input_default_pczwv_3 CarNameSearchInput-dFPSqi filter_text_input"
-                                                               id="searchKeyword" name="searchKeyword">
-                                <button id="reserve_search_btn"
-                                        class="_button_default_1vx5o_3 CarNameSearchButton-cvlOy filter_search_button ">
-                                    검색
-                                </button>
-                            </div>
-
-
+                        <!--국산/수입 구분 필터링-->
 
                         <p class="FilterTypeLabel-PbfDL reserv_filter_division">구분</p>
                         <div class="Wrap-cslTPT filter_button_container">
                             <button type="button"
-                                    class="_button_default_1vx5o_3 Button-dhBNRM AllButton-bhyRbS filter_button_default edUbUe ">
+                                    class="nation_filter_button" id="nation_filter_button_all">
                                 전체
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">국산
+                            <button type="button" class="nation_filter_button" id="domestic_btn">국산
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">수입
+                            <button type="button" class="nation_filter_button" id="oversea_btn">수입
                             </button>
                         </div>
+
+
+                        <!--차종 필터링-->
                         <p class="FilterTypeLabel-PbfDL reserv_filter_text">차종</p>
                         <div class="Wrap-cslTPT filter_button_container">
                             <button type="button"
-                                    class="_button_default_1vx5o_3 Button-dhBNRM AllButton-bhyRbS filter_button_default edUbUe ">
+                                    class="type_filter_button" id="type_filter_button_all">
                                 전체
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">경형
+                            <button type="button" class="type_filter_button" id="small_car_btn">경형
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">승용
+                            <button type="button" class="type_filter_button" id="midsize_car_btn">승용
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">SUV
+                            <button type="button" class="type_filter_button" id="suv_btn">SUV
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">승합
+                            <button type="button" class="type_filter_button" id="rv_btn">승합
                             </button>
                         </div>
-                        <p class="FilterTypeLabel-PbfDL reserv_filter_text">유종</p>
-                        <div class="Wrap-cslTPT filter_button_container">
+
+
+                        <!--유종 필터링-->
+
+                        <p class="reserv_filter_text">유종</p>
+                        <div class="filter_button_container">
                             <button type="button"
-                                    class="_button_default_1vx5o_3 Button-dhBNRM AllButton-bhyRbS filter_button_default edUbUe ">
+                                    class="oil_filter_button" id="oil_filter_button_all">
                                 전체
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">LPG
+
+                            <button type="button" class="oil_filter_button" id="diesel_btn">디젤
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">가솔린
+                            <button type="button" class="oil_filter_button" id="elec_btn">전기
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">디젤
+                            <button type="button" class="oil_filter_button" id="gasoline_btn">가솔린
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">전기
+                            <button type="button" class="oil_filter_button" id="lpg_btn">LPG
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">하이브리드
-                            </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-dhBNRM filter_button ">수소
+                            <button type="button" class="oil_filter_button" id="hybrid_btn">하이브리드
                             </button>
                         </div>
+
+
+                        <!--연식 필터링 슬라이더-->
                         <p class="FilterTypeLabel-PbfDL filter_scroll_title">연식 <span>2011~2023</span></p>
                         <div style="position: relative;">
                             <div class="slider_wrap" style="position: relative;">
+
+                              <input input type="range" value="0" min="2011" max="2023">
+                                <!--
                                 <div class="slider_track slider_track-0"
                                      style="position: absolute; left: 0px; right: 250px;"></div>
                                 <div class="slider_track slider_track-1"
@@ -179,8 +190,12 @@
                                      role="slider" aria-orientation="horizontal" aria-valuenow="2011"
                                      aria-valuemin="2011" aria-valuemax="2023"
                                      style="position: absolute; touch-action: none; z-index: 1; left: 0px;"></div>
+                            -->
                             </div>
                         </div>
+
+
+                        <!--인승 필터링 슬라이더-->
                         <p class="FilterTypeLabel-PbfDL filter_scroll_title">인승 <span>1~15</span></p>
                         <div style="position: relative;">
                             <div class="slider_wrap" style="position: relative;">
@@ -192,28 +207,32 @@
                                      role="slider" aria-orientation="horizontal" aria-valuenow="1" aria-valuemin="1"
                                      aria-valuemax="15"
                                      style="position: absolute; touch-action: none; z-index: 1; left: 0px;"></div>
+
                             </div>
                         </div>
-                        <p class="FilterTypeLabel-PbfDL reserv_filter_division">운전자 나이</p>
-                        <div class="Wrap-gdcbPm filter_age_box">
-                            <button type="button" class="_button_default_1vx5o_3 Button-duAiuH jBMZwr ">만 21세 ~
+
+                        <!--보험 나이 필터링 버튼-->
+                        <p class="reserv_filter_division">운전자 나이</p>
+                        <div class="filter_button_container">
+                            <button type="button" class="age_filter_button" id="21over">만 21세 ~
                                 25세
                             </button>
-                            <button type="button" class="_button_default_1vx5o_3 Button-duAiuH cMnVlH ">만 26세 이상
+                            <button type="button" class="age_filter_button" id="26over">만 26세 이상
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+
+
             <div>
-                <div class="ListInfoWrapper-igvcrK reserv_category_container"><span
-                        class="text-[14px] font_medium">총 7개</span>
+                <div class="ListInfoWrapper-igvcrK reserv_category_container">
                     <div class="result_category_box">
-                        <button class="result_category_text_off" id="car_type_list_btn">차종순</button>
+                        <button class="result_category_text" id="car_type_list_btn">차종순</button>
                         <div class="result_category_line"></div>
-                        <button class="result_category_text_on" id="low_price_list_btn">낮은 가격순</button>
+                        <button class="result_category_text" id="low_price_list_btn">낮은 가격순</button>
                         <div class="result_category_line"></div>
-                        <button class="result_category_text_off" id="high_price_list_btn">높은 가격순</button>
+                        <button class="result_category_text" id="high_price_list_btn">높은 가격순</button>
                     </div>
                 </div>
 

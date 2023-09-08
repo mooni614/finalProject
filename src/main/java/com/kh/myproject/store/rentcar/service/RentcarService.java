@@ -115,6 +115,181 @@ public class RentcarService {
         return dto;
     }
 
+
+// 구분 필터링_전체
+    public List<RentcarInfoDTO> FindBynationAll(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindBynationAll();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    // 구분 필터링_국내
+    public List<RentcarInfoDTO> FindBynationDomestic(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindBynationDomestic();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    // 구분 필터링_국외
+    public List<RentcarInfoDTO> FindBynationOversea(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindBynationOversea();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
+    //차종 필터링_전체
+    public List<RentcarInfoDTO> FindByTypeAll(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByTypeAll();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    //차종 필터링_경형
+    public List<RentcarInfoDTO> FindByTypeSmall(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByTypeSmall();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
+    //차종 필터링_승용
+    public List<RentcarInfoDTO> FindByTypeMid(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByTypeMid();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
+    //차종 필터링_suv
+    public List<RentcarInfoDTO> FindByTypeSuv(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByTypeSuv();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
+    //차종 필터링_승합
+    public List<RentcarInfoDTO> FindByTypeRv(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByTypeRv();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
+    //유종 필터링_전체
+    public List<RentcarInfoDTO> FindByOilAll(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByOilAll();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    //유종 필터링_디젤
+    public List<RentcarInfoDTO> FindByOilDiesel(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByOilDiesel();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
+    //유종 필터링_전기
+    public List<RentcarInfoDTO> FindByOilElec(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByOilElec();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
+    //유종 필터링_가솔린
+    public List<RentcarInfoDTO> FindByOilGasoline(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByOilGasoline();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
+    //유종 필터링_lpg
+    public List<RentcarInfoDTO> FindByOilLpg(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByOilLpg();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
+    //유종 필터링_하이브리드
+    public List<RentcarInfoDTO> FindByOilHybrid(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByOilHybrid();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
+    // 나이 필터링_21세 이상
+    public List<RentcarInfoDTO> FindByAgeDown(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByAgeDown();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    // 나이 필터링_21세 이상
+    public List<RentcarInfoDTO> FindByAgeUp(){
+
+        List<RentcarInfoEntity> entities = rentcarRepository.FindByAgeUp();
+
+        return entities.stream()
+                .map(RentcarInfoDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+
+
+
+
 /*
     //같은 이름 차 중 가장 저렴한 것 고르기
     public List<RentcarInfoDTO> FindrentcarCom(String car_name){
