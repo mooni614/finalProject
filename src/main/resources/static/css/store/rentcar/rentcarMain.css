@@ -733,7 +733,7 @@
 /*데이트피커 css */
 .ui-datepicker {
     width: 490px;
-    height: 440px;
+  /*  height: 440px;*/
     margin: 5px auto 0;
     font: 9pt Arial, sans-serif;
     background: white;
