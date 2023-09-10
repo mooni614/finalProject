@@ -39,26 +39,36 @@ public class RentcarController {
     }
 
 
+    //메인에서 지역버튼 눌렀을 때 컨트롤러
+    @GetMapping("/store/rentcar/rentcarReserve")
+    public String rentcarReserve(@RequestParam String input_location,
+                                 @RequestParam String depart_date,
+                                 @RequestParam String arrive_date,
+                                 @RequestParam String input_birth,
+                                    HttpSession session) {
 
 
-    /*
-        @GetMapping("/store/rentcar/rentcarReserve")
-        public String rentcarReserve() {
+        System.out.println(input_location);
+        System.out.println(depart_date);
+        System.out.println(arrive_date);
+        System.out.println(input_birth);
 
-            return "store/rentcar/rentcarReserve";
+        session.setAttribute("input_location", input_location);
+        session.setAttribute("depart_date", depart_date);
+        session.setAttribute("arrive_date", arrive_date);
+        session.setAttribute("input_birth", input_birth);
 
-        }
 
 
 
-        @GetMapping("/store/rentcar/rentcarChoice")
-        public String rentcarChoice() {
+        return "store/rentcar/rentcarReserve";
 
-            return "store/rentcar/rentcarChoice";
+    }
 
-        }
- */
-    @RequestMapping("/MainSearch") // http://localhost:8080/store/rentcar/MainSearch
+
+
+
+    @RequestMapping("/rentcarReserve") // http://localhost:8080/store/rentcar/MainSearch
     public String sample(@RequestParam String input_location,
                          @RequestParam String depart_date,
                          @RequestParam String arrive_date,
@@ -96,7 +106,7 @@ public class RentcarController {
 
     //키워드 검색결과
 
-    @GetMapping("/rentcarReserve")
+    @GetMapping("/rentcarReserveKeyword")
     public ResponseEntity<List<RentcarInfoDTO>> reserveSearch(@RequestParam(value = "searchKeyword") String searchKeyword) {
 
         System.out.println("reserveSearch 컨트롤러 메서드 실행");
@@ -331,17 +341,22 @@ public class RentcarController {
                                 @RequestParam("cartype") String cartype,
                                 @RequestParam("caryear") String caryear,
                                 @RequestParam("carprice") String carprice,
-
-            Model model, HttpSession session) {
+                                @RequestParam(value="carimg", required=false) String carimg,
+                                Model model, HttpSession session) {
 
         List<RentcarInfoEntity> rentcarComList = rentcarService.FindCombycarname(car_name);
 
+        System.out.println(car_name);
+        System.out.println(cartype);
+        System.out.println(caryear);
+        System.out.println(carprice);
+        System.out.println(carimg);
 
         session.setAttribute("cartype", cartype);
         session.setAttribute("caryear", caryear);
         session.setAttribute("carprice", carprice);
         session.setAttribute("car_name", car_name);
-
+        session.setAttribute("carimg", carimg);
         model.addAttribute("rentcarComList",rentcarComList);
 
 

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>여행시그널</title>
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/store/rentcar/rentcarMain.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
@@ -40,7 +40,7 @@
     <!--서치바-->
     <div class="search_bar_wrap" style="height: 100px;">
 
-        <form action="/MainSearch" method="post">
+        <form action="/rentcarReserve" method="post">
             <div class="search_bar_wrap_container">
                 <div style="height: 0px; background: transparent;"></div>
                 <div class="search_bar_wrap_container_line" style="height: 0px;">
@@ -191,7 +191,7 @@
                                 <select class="rent_time_check" id="depart_time">
                                     <!-- <select class="rent_time_check_input"> -->
 
-                                    <option>08:00</option>
+                                    <option selected>08:00</option>
                                     <option>09:00</option>
                                     <option>10:00</option>
                                     <option>11:00</option>
@@ -256,7 +256,7 @@
                                 <select class="rent_time_check" id="arrive_time">
                                     <!-- <select class="rent_time_check_input"> -->
 
-                                    <option>08:00</option>
+                                    <option selected>08:00</option>
                                     <option>09:00</option>
                                     <option>10:00</option>
                                     <option>11:00</option>
@@ -297,35 +297,35 @@
                 <div class="SectionTitle-itOSnk main_titles_text">어디로 떠나세요?</div>
 
                 <div class="leave_banner_container">
-                    <div class="leave_banner_container_item">
+                    <div class="leave_banner_container_item" id="jeju_btn" onclick="moveToJeju()">
                         <div class="area_name jeju">제주</div>
                         <img src="/img/store/rentcar/jeju.jpeg" style="width:160px; height:160px;">
                     </div>
 
-                    <div class="leave_banner_container_item">
+                    <div class="leave_banner_container_item" id="seoul_btn" onclick="moveToSeoul()">
                         <div class="area_name">서울</div>
                         <img src="/img/store/rentcar/seoul.jpg" style="width:160px; height:160px;">
                     </div>
 
 
-                    <div class="leave_banner_container_item">
+                    <div class="leave_banner_container_item" id="gangneung_btn" onclick="moveToGangneung()">
                         <div class="area_name">강릉</div>
                         <img src="/img/store/rentcar/gangneung.jpeg" style="width:160px; height:160px;">
                     </div>
 
-                    <div class="leave_banner_container_item">
+                    <div class="leave_banner_container_item" id="busan_btn" onclick="moveToBusan()">
                         <div class="area_name">부산</div>
                         <img src="/img/store/rentcar/busan.jpeg" style="width:160px; height:160px;">
                     </div>
 
 
-                    <div class="leave_banner_container_item">
+                    <div class="leave_banner_container_item" id="yeosu_btn" onclick="moveToYeosu()">
                         <div class="area_name">여수</div>
                         <img src="/img/store/rentcar/yeosu.jpeg" style="width:160px; height:160px;">
                     </div>
 
 
-                    <div class="leave_banner_container_item">
+                    <div class="leave_banner_container_item" id="gyeongju_btn" onclick="moveToGyeongju()">
                         <div class="area_name">경주</div>
                         <img src="/img/store/rentcar/gyeongju.jpeg" style="width:160px; height:160px;">
                     </div>
@@ -552,33 +552,146 @@
 
                 <div class="qna_category_content" id="qnaBtnAnswer2">
                     <div class="qna_content_container">
-                        <div class="qna_title_wrap"><span>Q. 샘플샘플 </span>
+                        <div class="qna_title_wrap"><span>Q. 취소 수수료가 어떻게 되나요?</span>
                             <img
                                     alt="이미지" class="qna_open_icon false"
                                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
                                     style="width: 25px; height: 25px;"></div>
                         <div class="qna_line undefined" style="max-height: 0px;">
                             <div class="qna_content_accordion open">
-                                예시
+                                취소 시점에 따라 아래와 같이 취소 수수료가 발생합니다. 1. 예약 60분 이내거나 대여 시작 시간 72시간 전: 취소 수수료 없음(100% 환불) 2. 대여
+                                시작 시간 72시간 ~ 대여 시작 시간까지: 취소 수수료 30% (70% 환불)
                             </div>
                         </div>
                     </div>
+
+                    <div class="qna_content_container">
+                        <div class="qna_title_wrap"><span>Q. 대여 시작 시간이 지났는데 취소할 수 있나요? </span>
+                            <img
+                                    alt="이미지" class="qna_open_icon false"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
+                                    style="width: 25px; height: 25px;"></div>
+                        <div class="qna_line undefined" style="max-height: 0px;">
+                            <div class="qna_content_accordion open">
+                                대여 시작 시간 이후에는 취소가 불가합니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qna_content_container">
+                        <div class="qna_title_wrap"><span>Q. 대여 후 차량을 운행하지 않았는데 취소할 수 있나요? </span>
+                            <img
+                                    alt="이미지" class="qna_open_icon false"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
+                                    style="width: 25px; height: 25px;"></div>
+                        <div class="qna_line undefined" style="max-height: 0px;">
+                            <div class="qna_content_accordion open">
+                                차량 인수 후 차량을 운행하지 않았더라도 대여 시작 시간이 지난 후에는 취소할 수 없습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qna_content_container">
+                        <div class="qna_title_wrap"><span>Q. 법정 감염병으로 인한 취소 시 취소 수수료가 발생하나요? </span>
+                            <img
+                                    alt="이미지" class="qna_open_icon false"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
+                                    style="width: 25px; height: 25px;"></div>
+                        <div class="qna_line undefined" style="max-height: 0px;">
+                            <div class="qna_content_accordion open">
+                                렌터카 업체 운영방침에 따르며, 취소 시 증명서 등 필요 서류가 발생할 수 있습니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qna_content_container">
+                        <div class="qna_title_wrap"><span>Q. 결항/지연으로 인한 환불 절차는 어떻게 되나요? </span>
+                            <img
+                                    alt="이미지" class="qna_open_icon false"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
+                                    style="width: 25px; height: 25px;"></div>
+                        <div class="qna_line undefined" style="max-height: 0px;">
+                            <div class="qna_content_accordion open">
+                                항송가/공항, 선박사에서 결항 확인증을 받으신 후 고객센터로 연락해주시면 환불 처리 도와드리겠습니다. 지연으로 인한 환불은 어려우며, 취소 수수료가 부과되지
+                                않도록 사전에 예약을 취소하시거나 렌터카 업체 또는 고객센터로 연락 부탁드립니다.
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
 
 
                 <div class="qna_category_content" id="qnaBtnAnswer3">
                     <div class="qna_content_container">
-                        <div class="qna_title_wrap"><span>Q. 샘플샘플33333 </span>
+                        <div class="qna_title_wrap"><span>Q. 종합보험에 가입되어 있나요? </span>
                             <img
                                     alt="이미지" class="qna_open_icon false"
                                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
                                     style="width: 25px; height: 25px;"></div>
                         <div class="qna_line undefined" style="max-height: 0px;">
                             <div class="qna_content_accordion open">
-                                샘플샘플 3333
+                                전 차량 종합보험에 가입되어 있습니다.
                             </div>
                         </div>
                     </div>
+
+                    <div class="qna_content_container">
+                        <div class="qna_title_wrap"><span>Q. 종합보험 내용이 어떻게 되나요? </span>
+                            <img
+                                    alt="이미지" class="qna_open_icon false"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
+                                    style="width: 25px; height: 25px;"></div>
+                        <div class="qna_line undefined" style="max-height: 0px;">
+                            <div class="qna_content_accordion open">
+                                렌터카 차량하마 다를 수 있어, 차량 예약 시 상세페이지에서 확인 부탁드립니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qna_content_container">
+                        <div class="qna_title_wrap"><span>Q. 자차보험에 꼭 가입해야 하나요? </span>
+                            <img
+                                    alt="이미지" class="qna_open_icon false"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
+                                    style="width: 25px; height: 25px;"></div>
+                        <div class="qna_line undefined" style="max-height: 0px;">
+                            <div class="qna_content_accordion open">
+                                고객 손해 방지를 위해 의무 가입으로 진행하고 있습니다. 자차보험 종류에 따라 보상한도와 면책금이 다를 수 있으니, 차량 예약 시 상세페이지에서 확인
+                                부탁드립니다.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qna_content_container">
+                        <div class="qna_title_wrap"><span>Q. 사고 발생 시 어떻게 해야 하나요?</span>
+                            <img
+                                    alt="이미지" class="qna_open_icon false"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
+                                    style="width: 25px; height: 25px;"></div>
+                        <div class="qna_line undefined" style="max-height: 0px;">
+                            <div class="qna_content_accordion open">
+                                사고 발생 즉시 해당 차량의 렌터카 업체로 연락 부탁드립니다. 자차보험은 최초 사고 1회만 보장이 되어 사고 후에는 차량을 반납해 주셔야 합니다. 사고로 인한
+                                조기반납 시, 대여 요금은 환불 불가합니다. 또한 사고 처리가 완료될 때까지는 차량 예약이 불가하며, 사고 처리가 모두 완료된 후에 예약이 가능합니다. 사고
+                                발생 시 당사자 간 합의하거나, 사고 현장 이탈 또는 사고 신고 없이 반납할 경우 보험 처리가 불가할 수 있습니다. 또한 가능하다면 사고 발생 시 아래 사항을
+                                확인 부탁드립니다. - 사고 발생 일시 및 장소 - 차량 및 인적 피해 발생 여부 - 상대 차량 피해 상태 및 차량,운전자 정보
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qna_content_container">
+                        <div class="qna_title_wrap"><span>Q. 사고 발생 후 면책금이나 휴차보상료는 어떻게 지불하나요? </span>
+                            <img
+                                    alt="이미지" class="qna_open_icon false"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwnJycnJycgICAoKCgmJiYnJycoKCgoKCgnJycoKCg2huJ7AAAACnRSTlMAnMsQYDXwIN9wlqiu6gAAAKRJREFUOMtjYBgFAwRK0AXcoXSXMKq44QooQ2qRAbI4s9ZCKItxVSuyRMQqARhz1rIAhDhr1ko4myVrCULCa5kDghOG0M24KhXJWHathVD7maUWFSBbaLRKGY0BA1IrwPazdi1E8ywnxOiwVRPQg8FtFdAxLKtSMAKMNQtoiBSyh2CgaJWw4Sp1LGHMrLVICzXQEF5DeBMVzFqJI8JYHEYT7UADAOXZIZtQPLDLAAAAAElFTkSuQmCC"
+                                    style="width: 25px; height: 25px;"></div>
+                        <div class="qna_line undefined" style="max-height: 0px;">
+                            <div class="qna_content_accordion open">
+                                해당 차량의 렌터카 업체에서 고객님께 직접 청구하게 되며, 업체가 안내한 기한 내 지불해 주셔야 합니다.
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
 
@@ -586,7 +699,6 @@
         </div>
     </div>
 </div>
-
 
 
 </body>

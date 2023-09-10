@@ -143,22 +143,21 @@ $(function () {
 
         , inline: true
 
-        , range: true
-
         , showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
 
         , showMonthAfterYear: true //년도 먼저 나오고, 뒤에 월 표시
 
-        , changeYear: true //콤보박스에서 년 선택 가능
+        /*  , changeYear: true //콤보박스에서 년 선택 가능
 
-        , changeMonth: true //콤보박스에서 월 선택 가능
+          , changeMonth: true //콤보박스에서 월 선택 가능
 
-        /* ,selectOtherMonths: ture // 다른 달도 선택가능 */
+          ,selectOtherMonths: ture // 다른 달도 선택가능 */
 
 
         , yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
 
-        , monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'] //달력의 월 부분 텍스트
+
+        , monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'] //달력의 월 부분 텍스트
 
         , monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'] //달력의 월 부분 Tooltip 텍스트
 
@@ -166,9 +165,10 @@ $(function () {
 
         , dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'] //달력의 요일 부분 Tooltip 텍스트
 
-        , minDate: "-1M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+        , minDate: 0 //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
 
         , maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+
 
 
     });
@@ -203,16 +203,17 @@ $(function () {
 
         , showMonthAfterYear: true //년도 먼저 나오고, 뒤에 월 표시
 
-        , changeYear: true //콤보박스에서 년 선택 가능
+      /*  , changeYear: true //콤보박스에서 년 선택 가능
 
         , changeMonth: true //콤보박스에서 월 선택 가능
 
-        /* ,selectOtherMonths: ture // 다른 달도 선택가능 */
+        ,selectOtherMonths: ture // 다른 달도 선택가능 */
 
 
         , yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
 
-        , monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'] //달력의 월 부분 텍스트
+
+        , monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'] //달력의 월 부분 텍스트
 
         , monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'] //달력의 월 부분 Tooltip 텍스트
 
@@ -220,7 +221,7 @@ $(function () {
 
         , dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'] //달력의 요일 부분 Tooltip 텍스트
 
-        , minDate: "-1M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+        ,minDate: 0 //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
 
         , maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
 
@@ -383,4 +384,216 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+
+
+
+
+
+
+
+
+
+//제주 버튼 눌렀을 때 이동하는 js
+
+function moveToJeju() {
+
+    var input_location = "제주국제공항";
+    var input_birth = "990101";
+
+    // 현재 날짜와 시간을 가져옴
+    var currentDate = new Date();
+    var currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var currentDay = ('0' + currentDate.getDate()).slice(-2);
+
+    var depart_date = currentMonth + ". " + currentDay + "."+ "" + " 08:00";
+
+  //  sessionStorage.setItem("depart_date", currentMonth + "." + currentDay + ","+ " 08:00");
+
+    // 하루 뒤의 날짜를 계산
+    currentDate.setDate(currentDate.getDate() + 1);
+
+    var nextMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var nextDay = ('0' + currentDate.getDate()).slice(-2);
+
+    // arrive_date 세션 값 설정
+  //  sessionStorage.setItem("arrive_date",nextMonth + "." + nextDay+ "." + " 16:00");
+
+    var arrive_date = nextMonth + "." + nextDay+ "." + " 16:00";
+
+console.log(input_location);
+    console.log(input_birth);
+
+    // rentcarReserve.html 페이지로 이동
+    location.href = "/store/rentcar/rentcarReserve?input_location="+input_location+"&depart_date="+depart_date+"&arrive_date="+arrive_date+"&input_birth="+input_birth;
+}
+
+
+function moveToSeoul() {
+
+    var input_location = "서울역(철도역)";
+    var input_birth = "990101";
+
+    // 현재 날짜와 시간을 가져옴
+    var currentDate = new Date();
+    var currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var currentDay = ('0' + currentDate.getDate()).slice(-2);
+
+    var depart_date = currentMonth + ". " + currentDay + "."+ "" + " 08:00";
+
+    //  sessionStorage.setItem("depart_date", currentMonth + "." + currentDay + ","+ " 08:00");
+
+    // 하루 뒤의 날짜를 계산
+    currentDate.setDate(currentDate.getDate() + 1);
+
+    var nextMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var nextDay = ('0' + currentDate.getDate()).slice(-2);
+
+    // arrive_date 세션 값 설정
+    //  sessionStorage.setItem("arrive_date",nextMonth + "." + nextDay+ "." + " 16:00");
+
+    var arrive_date = nextMonth + "." + nextDay+ "." + " 16:00";
+
+    console.log(input_location);
+    console.log(input_birth);
+
+    // rentcarReserve.html 페이지로 이동
+    location.href = "/store/rentcar/rentcarReserve?input_location="+input_location+"&depart_date="+depart_date+"&arrive_date="+arrive_date+"&input_birth="+input_birth;
+}
+
+
+//강릉 버튼 눌렀을 때 이동
+function moveToGangneung() {
+
+    var input_location = "강릉역";
+    var input_birth = "990101";
+
+    // 현재 날짜와 시간을 가져옴
+    var currentDate = new Date();
+    var currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var currentDay = ('0' + currentDate.getDate()).slice(-2);
+
+    var depart_date = currentMonth + ". " + currentDay + "."+ "" + " 08:00";
+
+    //  sessionStorage.setItem("depart_date", currentMonth + "." + currentDay + ","+ " 08:00");
+
+    // 하루 뒤의 날짜를 계산
+    currentDate.setDate(currentDate.getDate() + 1);
+
+    var nextMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var nextDay = ('0' + currentDate.getDate()).slice(-2);
+
+    // arrive_date 세션 값 설정
+    //  sessionStorage.setItem("arrive_date",nextMonth + "." + nextDay+ "." + " 16:00");
+
+    var arrive_date = nextMonth + "." + nextDay+ "." + " 16:00";
+
+    console.log(input_location);
+    console.log(input_birth);
+
+    // rentcarReserve.html 페이지로 이동
+    location.href = "/store/rentcar/rentcarReserve?input_location="+input_location+"&depart_date="+depart_date+"&arrive_date="+arrive_date+"&input_birth="+input_birth;
+}
+
+
+
+//부산 버튼 눌렀을 때 이동
+function moveToBusan() {
+
+    var input_location = "부산역";
+    var input_birth = "990101";
+
+    // 현재 날짜와 시간을 가져옴
+    var currentDate = new Date();
+    var currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var currentDay = ('0' + currentDate.getDate()).slice(-2);
+
+    var depart_date = currentMonth + ". " + currentDay + "."+ "" + " 08:00";
+
+    //  sessionStorage.setItem("depart_date", currentMonth + "." + currentDay + ","+ " 08:00");
+
+    // 하루 뒤의 날짜를 계산
+    currentDate.setDate(currentDate.getDate() + 1);
+
+    var nextMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var nextDay = ('0' + currentDate.getDate()).slice(-2);
+
+    // arrive_date 세션 값 설정
+    //  sessionStorage.setItem("arrive_date",nextMonth + "." + nextDay+ "." + " 16:00");
+
+    var arrive_date = nextMonth + "." + nextDay+ "." + " 16:00";
+
+    console.log(input_location);
+    console.log(input_birth);
+
+    // rentcarReserve.html 페이지로 이동
+    location.href = "/store/rentcar/rentcarReserve?input_location="+input_location+"&depart_date="+depart_date+"&arrive_date="+arrive_date+"&input_birth="+input_birth;
+}
+
+
+//여수 버튼 눌렀을 때 이동
+function moveToYeosu() {
+
+    var input_location = "여수엑스포역";
+    var input_birth = "990101";
+
+    // 현재 날짜와 시간을 가져옴
+    var currentDate = new Date();
+    var currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var currentDay = ('0' + currentDate.getDate()).slice(-2);
+
+    var depart_date = currentMonth + ". " + currentDay + "."+ "" + " 08:00";
+
+    //  sessionStorage.setItem("depart_date", currentMonth + "." + currentDay + ","+ " 08:00");
+
+    // 하루 뒤의 날짜를 계산
+    currentDate.setDate(currentDate.getDate() + 1);
+
+    var nextMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var nextDay = ('0' + currentDate.getDate()).slice(-2);
+
+    // arrive_date 세션 값 설정
+    //  sessionStorage.setItem("arrive_date",nextMonth + "." + nextDay+ "." + " 16:00");
+
+    var arrive_date = nextMonth + "." + nextDay+ "." + " 16:00";
+
+    console.log(input_location);
+    console.log(input_birth);
+
+    // rentcarReserve.html 페이지로 이동
+    location.href = "/store/rentcar/rentcarReserve?input_location="+input_location+"&depart_date="+depart_date+"&arrive_date="+arrive_date+"&input_birth="+input_birth;
+}
+
+
+//경주 버튼 눌렀을 때 이동
+function moveToGyeongju() {
+
+    var input_location = "신경주역";
+    var input_birth = "990101";
+
+    // 현재 날짜와 시간을 가져옴
+    var currentDate = new Date();
+    var currentMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var currentDay = ('0' + currentDate.getDate()).slice(-2);
+
+    var depart_date = currentMonth + ". " + currentDay + "."+ "" + " 08:00";
+
+    //  sessionStorage.setItem("depart_date", currentMonth + "." + currentDay + ","+ " 08:00");
+
+    // 하루 뒤의 날짜를 계산
+    currentDate.setDate(currentDate.getDate() + 1);
+
+    var nextMonth = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    var nextDay = ('0' + currentDate.getDate()).slice(-2);
+
+    // arrive_date 세션 값 설정
+    //  sessionStorage.setItem("arrive_date",nextMonth + "." + nextDay+ "." + " 16:00");
+
+    var arrive_date = nextMonth + "." + nextDay+ "." + " 16:00";
+
+    console.log(input_location);
+    console.log(input_birth);
+
+    // rentcarReserve.html 페이지로 이동
+    location.href = "/store/rentcar/rentcarReserve?input_location="+input_location+"&depart_date="+depart_date+"&arrive_date="+arrive_date+"&input_birth="+input_birth;
+}
 

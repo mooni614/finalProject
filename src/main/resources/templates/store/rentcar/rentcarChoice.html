@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" class = "no-js">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>여행시그널</title>
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/store/rentcar/rentcarChoice.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
@@ -54,8 +54,14 @@
                                                               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAAIVBMVEVHcEwoKCgoKCgoKCgoKCgmJiYnJycnJycnJycnJycoKCgaae9ZAAAACnRSTlMAgD9AwCfmW9CrPNuh5QAAAKhJREFUOMtjYKAbYC/AZIFB1UIYS2o5isSsJTCW10oUCa8lmCwGViUlpa4VSlAAZgWAJaJWYYClYAkrTInFEIllLi5ZQAwBIFYWVGIhuuVSCAkpuCNnLUSRCEuFSYBYUAlWJQxAtnOXCKIBL4TlqADmqpXods9aTMAOKlo+KjEgEitQkxqrUhdEggM5UlPBCbABkkSzUNNg1KplAdAcjBTdBSBuAZ0KEQCFxaxY4wVeUAAAAABJRU5ErkJggg==">
                                     <div class="input_title_text">날짜 및 시간</div>
                                 </div>
-                                <input class="search_input_round search_input_detail" readonly=""
-                                       value="08.25(금) 10:00 - 08.26(토) 10:00"></div>
+                                <input class="search_input_round search_input_detail"
+                                       th:value="${session.depart_date}"
+                                       readonly=""
+                                       placeholder="대여날짜 선택">
+                                <input class="search_input_round_date search_input_detail" id="arrive_date"
+                                       th:value="${session.arrive_date}"
+                                       readonly=""
+                                       placeholder="반납날짜 선택"></div>
                             <div class="input_grid_number"></div>
                             <div class="input_title_and_detail">
                                 <div class="input_title"><img alt="이미지" class="input_title_icon"
@@ -64,14 +70,12 @@
                                 </div>
                                 <div class="input_birth_wrap"><input
                                         class="search_input_round search_input_detail" placeholder="YYMMDD"
-                                        value="970824" style="height: 20px; margin-top: 0px;">
+                                        th:value="${session.input_birth}" style="height: 20px; margin-top: 0px;">
                                     <div class="StyledText-uUnMb bISJPX"></div>
                                 </div>
                             </div>
                         </div>
-                        <button type="button" id="/web/차량검색-검색버튼"
-                                class="rentcar_search_button choice_search_button">검색
-                        </button>
+
                     </div>
                 </div>
             </div>
@@ -87,12 +91,12 @@
             <div class="carinfo_box">
                 <div class="carinfo_detail"><span class="carinfo_year" th:text="${session.caryear}"></span>
                     <p class="SubmodelName-fBxKDh carinfo_name" th:text="${session.car_name}"></p>
-                    <p class="SubName-gORRDq carinfo_level" th:text="${session.cartype}"></p><img
-                            src="https://ims-mobility-public.s3.ap-northeast-2.amazonaws.com/cars/6.png"
+                    <p class="SubName-gORRDq carinfo_level" th:text="${session.cartype}"></p>
+                    <img th:src="@{/img/store/rentcar/__${session.carimg}__}"
                             style="width: 210px; margin-bottom: 15px;">
-                    <p class="Desc-jMHTTH carinfo_text">이미지는 이해를 돕기 위한 예시 이며, 배차</p>
-                    <p class="Desc-jMHTTH carinfo_text">차량의 색상과 디테일이 다를 수 있습니다. </p>
-                    <div class="PriceBox-isHGbR carinfo_price"><p class="PriceText-iWKXRR carinfo_carprice" th:text="${session.carprice}"></p>
+                    <p class="Desc-jMHTTH carinfo_text">이미지는 이해를 돕기 위한 예시이며,</p>
+                    <p class="Desc-jMHTTH carinfo_text">배차 차량의 색상과 디테일이 다를 수 있습니다. </p>
+                    <div class="PriceBox-isHGbR carinfo_price"><p class="PriceText-iWKXRR carinfo_carprice" th:text="${#numbers.formatInteger(session.carprice, 3, 'COMMA') + '원'}"></p>
                         <p class="text_14px text_color_1d60e4">보험/딜리버리 포함가</p></div>
                 </div>
             </div>
@@ -102,7 +106,10 @@
 
             <div class="ListInfoContainer-eqRBsu carCompanyinfo_wrap">
 
-                <div class="ListInfoWrapper-igvcrK carCompanyinfo_container"><span class="text-[14px] font-medium">총 1개</span>
+
+                <div class="ListInfoWrapper-igvcrK carCompanyinfo_container"><span class="miniTitle">렌트카업체</span>
+
+                   <!--
                     <div class="Wrapper-dCnMqr result_category">
                         <button class="SortButton-inTkYa categoryOn">가격순</button>
                         <div class="Border-bHHyqR category_line"></div>
@@ -110,7 +117,10 @@
                         <div class="Border-bHHyqR category_line"></div>
                         <button class="SortButton-inTkYa categoryOff">평점순</button>
                     </div>
+
+                     -->
                 </div>
+
 
                 <div class="infinite-scroll-component__outerdiv">
                     <div class="infinite-scroll-component " style="height: auto; overflow: hidden;">
@@ -121,21 +131,20 @@
                                <!-- <div class="LabelArea-czDCAU company_item_box"><span class="Label-bLEvNO hidyRW">최신연식</span></div> -->
                                 <div style="display: flex; align-items: center; justify-content: space-between;">
                                     <div style="display: flex; align-items: center;"><span
-                                            class="company_name" th:text="${list.getCom_id().getCom_name()}"></span><img
-                                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8BAMAAADI0sRBAAAALVBMVEVHcEz/tT39s0L9s0L9s0L9s0L/tEL9s0L9s0L/s0L/tEH9s0L9s0L8s0L9s0O5drtDAAAADnRSTlMAD97xonwdylhCMWuKtfAt5loAAAFdSURBVDjLY2AYKkA0EJ8sm94jATzSLO/eOeCRFn73zhCP9L53717jkdZ79+45blnOd0CwAJ/L8LlNDiSN221xIOnX+Fz27t0jvC57924CDmleiDQut+VBpB/ic9m7d0+xy2bpQaQfLcOIyBkx7lBJsIKSo50JcMklxe+wAHMvqNZ32MFjiAGsOKTfBYCluXFJb4AYboddFpbsFmOXtoKnT6ya4V5LxyZdCPc4Yx2m7HMBjLhCBheQQ9UPXfYJSqDzYA8S5AyADNATHAeqdAN6nM5Dln2JKyXhSk99yNIvMKTPIUu/wZBGCTjMbIoSq4/RZblQPYaei7mxJRS0rI0A6BmJCVVaAVvOBzq5Dnu4QML08QZWO6yhCsl+1xgYcrFmw3sgQQsQqxnEeoslVJ6AkxejH2a4gPLZI2ipwQlK1wko0oxAkQPIKUsAPcKqEJzlGFHGEYHMa20Y/DUTACOBKZveHNTBAAAAAElFTkSuQmCC"
-                                            width="20px" height="20px" alt="ratingStar" class="mr-[2px]"><span
-                                            class="text-[16px] font-medium leading-normal">4.6</span></div>
-                                    <span class="text_23px font-semibold" th:text="${list.getCar_discount()}">80,000원</span></div>
+                                            class="company_name" th:text="${list.getCom_id().getCom_name()}"></span>
+                                       </div>
+                                    <span class="text_23px font-semibold" th:text="${#numbers.formatInteger(list.getCar_discount(), 3, 'COMMA') + '원'}"></span></div>
                                 <div style="display: flex; align-items: center; justify-content: space-between;">
-                                    <div class="CarInfoArea-byIURY company_text_box">21~23년
+                                    <div class="CarInfoArea-byIURY company_text_box">
+                                        <div th:text="${list.getCar_year()}"> </div>
                                         <div class="TextBorder-imbBgn company_text_detail_line"></div>
-
+                                        <div th:text="${list.getDriver_age()}"> </div>
                                         <div class="TextBorder-imbBgn company_text_detail_line"></div>
-                                        가솔린
+                                        <div th:text="${list.getOil_type()}"> </div>
                                         <div class="TextBorder-imbBgn company_text_detail_line" ></div>
-                                        5인승
+                                        <div th:text="${list.getCar_people() + '인승'}"> </div>
                                     </div>
-                                    <span class="OriginalPrice-elYHeW company_price" th:text="${list.getCar_price()}"></span></div>
+                                    <span class="OriginalPrice-elYHeW company_price" th:text="${#numbers.formatInteger(list.getCar_price(), 3, 'COMMA') + '원'}"></span></div>
                                 <div class="CarOptionBox-cQwFKH company_option" th:text="${list.getCar_option()}"></div>
                                 <div><input type="hidden" id="Car_info_id" name="Car_info_id" th:value="${list.getCar_info_id()}"> </div>
                             </div>

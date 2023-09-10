@@ -132,14 +132,14 @@
 .rentcar_search_button {
     border-width: 0px;
     border-radius: 5px;
-    background-color: #00ce7c;
+    background-color: #00b8ff;
     color: #fff;
     outline: none;
 }
 
 .main_search_button {
     width: 110px;
-    background-color: #00ce7c;
+    background-color: #00b8ff;
     border-radius: 20px;
     font-size: 20px;
     box-shadow: 1px 1px 5px #00000026;
@@ -387,7 +387,7 @@
 
     border-width: 0px;
     border-radius: 5px;
-    background-color: #588fee;
+    background-color: #00b8ff;
     color: #fff;
     outline: none;
 }
@@ -486,49 +486,6 @@
 }
 
 
-/*
-
-.leave_warp .leave_banner_container_item .jeju {
-    background-repeat: no-repeat;
-    background-size: 160px 160px;
-}
-
-
-.leave_warp .leave_banner_container_item .img_seoul {
-    background-image: url(/static/img/store/rentcar/seoul.jpg);
-    background-repeat: no-repeat;
-    background-size: 160px 160px;
-}
-
-
-.leave_warp .leave_banner_container_item .img_gangneung {
-    background-image: url(/static/img/store/rentcar/gangneung.jpeg);
-    background-repeat: no-repeat;
-    background-size: 160px 160px;
-}
-
-
-.leave_warp .leave_banner_container_item .img_busan {
-    background-image: url(/static/img/store/rentcar/busan.jpeg);
-    background-repeat: no-repeat;
-    background-size: 160px 160px;
-}
-
-
-.leave_warp .leave_banner_container_item .img_yeosu {
-    background-image: url(/static/img/store/rentcar/yeosu.jpeg);
-    background-repeat: no-repeat;
-    background-size: 160px 160px;
-}
-
-
-.leave_warp .leave_banner_container_item .img_gyeongju {
-    background-image: url(/static/img/store/rentcar/gyeongju.jpeg);
-    background-repeat: no-repeat;
-    background-size: 160px 160px;
-}
-
-*/
 
 /*픽 렌터카*/
 
@@ -579,7 +536,7 @@
     -webkit-box-align: center;
     align-items: center;
     font-size: 70px;
-    color: #00ce7c;
+    color: #00b8ff;
     font-weight: 600;
 }
 
@@ -734,14 +691,6 @@
     border-bottom: 1px solid lightgray;
 }
 
-/*
-.qna_wrap .qna_content_accordion_title {
-    padding: 23px 0px;
-    font-size: 16px;
-    font-weight: 500;
-}
-
- */
 
 .qna_title_wrap {
     justify-content: space-between;
@@ -774,10 +723,10 @@
 .qna_wrap .qna_content_accordion {
 
     padding: 20px 15px;
-    background-color: lightgray;
+    background-color: rgba(217,212,214,0.47);
     /* line-height: 1.43; */
     font-size: 14px;
-    height: 80px;
+    height: 100%;
     display: none;
 }
 
@@ -826,6 +775,8 @@
     margin: 0 auto;
     height: 100%;
     padding: 17px 0;
+
+    cursor: pointer;
 
     fill: currentColor;
     font-weight: bold;
@@ -913,7 +864,7 @@
 }
 
 .ui-datepicker-calendar .ui-state-active {
-    background: #588fee;
+    background: #00b8ff;
     color: white;
     font-weight: normal;
     filter: dropshadow(color=#4d7a85, offx=0, offy=1);
@@ -926,6 +877,7 @@
 .ui-datepicker-unselectable .ui-state-default {
     background: #f4f4f4;
     color: #b4b3b3;
+    border-radius: 50px;
 }
 
 .ui-datepicker-calendar td:first-child .ui-state-active {

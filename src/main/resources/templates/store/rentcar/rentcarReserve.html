@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" class="no-js">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>여행시그널</title>
 
     <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/store/rentcar/rentcarReserve.css">
@@ -28,6 +28,9 @@
 
 
     <div class="search_bar_wrap" style="height: 100px;">
+
+
+
 
         <div class="search_bar_wrap_container">
             <div style="height: 80px; background: white;"></div>
@@ -78,23 +81,17 @@
                             </div>
                         </div>
 
+                        <!--
                         <button type="button" id="reserve_rentcar_search"
                                 class="rentcar_search_button reserve_search_button">검색
                         </button>
+                        -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!--
-        <div>
-            <input type="hidden" id="th_input_location" th:value="${input_location}"/>
-            <input type="hidden" id="th_depart_date" th:value="${depart_date}"/>
-            <input type="hidden" id="th_arrive_date" th:value="${arrive_date}"/>
-            <input type="hidden" id="th_input_birth" th:value="${input_birth}"/>
-        </div>
-    -->
 
     <!--검색 필터링-->
     <div width="auto" class="ContentsArea-ceSrvw reserv_contents_area">
@@ -174,14 +171,16 @@
                             </button>
                         </div>
 
+                        <!--
 
-                        <!--연식 필터링 슬라이더-->
+
+                        연식 필터링 슬라이더
                         <p class="FilterTypeLabel-PbfDL filter_scroll_title">연식 <span>2011~2023</span></p>
                         <div style="position: relative;">
                             <div class="slider_wrap" style="position: relative;">
 
                               <input input type="range" value="0" min="2011" max="2023">
-                                <!--
+
                                 <div class="slider_track slider_track-0"
                                      style="position: absolute; left: 0px; right: 250px;"></div>
                                 <div class="slider_track slider_track-1"
@@ -190,12 +189,12 @@
                                      role="slider" aria-orientation="horizontal" aria-valuenow="2011"
                                      aria-valuemin="2011" aria-valuemax="2023"
                                      style="position: absolute; touch-action: none; z-index: 1; left: 0px;"></div>
-                            -->
+
                             </div>
                         </div>
 
 
-                        <!--인승 필터링 슬라이더-->
+                        인승 필터링 슬라이더
                         <p class="FilterTypeLabel-PbfDL filter_scroll_title">인승 <span>1~15</span></p>
                         <div style="position: relative;">
                             <div class="slider_wrap" style="position: relative;">
@@ -210,6 +209,8 @@
 
                             </div>
                         </div>
+
+                        -->
 
                         <!--보험 나이 필터링 버튼-->
                         <p class="reserv_filter_division">운전자 나이</p>
@@ -269,6 +270,74 @@
 </div>
 
 </body>
+
+
+<!--카카오맵api 스크립트 실행영역-->
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=41fe8a9eec42ebe1ccd12d7bf8f4dd7d&libraries=services,clusterer,drawing"></script>
+<script>
+    var infowindow = new kakao.maps.InfoWindow({zIndex: 1});
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 장소 검색 객체를 생성합니다
+    var ps = new kakao.maps.services.Places();
+
+    const searchButton = document.getElementById('input_map_search');
+
+    searchButton.addEventListener('click', function () {
+        const keywordInput = document.getElementById('input_map_keyword');
+        const keyword = keywordInput.value;
+
+        // 키워드로 장소를 검색합니다
+        ps.keywordSearch(keyword, placesSearchCB);
+    });
+
+    // 키워드 검색 완료 시 호출되는 콜백함수 입니다
+    function placesSearchCB(data, status, pagination) {
+        if (status === kakao.maps.services.Status.OK) {
+            console.log(data);
+
+            // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+            // LatLngBounds 객체에 좌표를 추가합니다
+            var bounds = new kakao.maps.LatLngBounds();
+
+            for (var i = 0; i < data.length; i++) {
+                displayMarker(data[i]);
+                bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+            }
+
+            // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+            map.setBounds(bounds);
+        }
+    }
+
+    // 지도에 마커를 표시하는 함수입니다
+    function displayMarker(place) {
+        // 마커를 생성하고 지도에 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: new kakao.maps.LatLng(place.y, place.x)
+        });
+
+        // 마커에 클릭이벤트를 등록합니다
+        kakao.maps.event.addListener(marker, 'click', function () {
+            // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+            infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+            infowindow.open(map, marker);
+
+            // place_name 값을 input_location 요소에 표시합니다.
+            document.getElementById('input_location').value = place.place_name;
+        });
+    }
+</script>
 
 
 </html>
